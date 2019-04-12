@@ -1,0 +1,49 @@
+@font-face {
+  font-family: AlrightSans;
+  src: url(./../assets/fonts/AlrightSans-Light.eot) format('eot'),
+       url(./../assets/fonts/AlrightSans-Light.ttf) format('truetype'),
+       url(./../assets/fonts/AlrightSans-Light.woff) format('woff'),
+       url(./../assets/fonts/AlrightSans-Light.woff2) format('woff2'),
+       url(./../assets/fonts/AlrightSans-Light.svg) format('svg');
+}
+@font-face {
+  font-family: AlrightSansBold;
+  src: url(./../assets/fonts/AlrightSans-Bold.eot) format('eot'),
+       url(./../assets/fonts/AlrightSans-Bold.ttf) format('truetype'),
+       url(./../assets/fonts/AlrightSans-Bold.woff) format('woff'),
+       url(./../assets/fonts/AlrightSans-Bold.woff2) format('woff2'),
+       url(./../assets/fonts/AlrightSans-Bold.svg) format('svg');
+}
+
+
+
+$fontBold: AlrightSansBold;
+$font: AlrightSans;
+
+p {
+  font-family: $font;
+}
+h1, h2 {
+  font-family: $fontBold;
+}
+
+
+$easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$easeInOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+$easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeInOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+$easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$easeInOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+$easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$easeInOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+$easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeInOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
