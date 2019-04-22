@@ -28,7 +28,7 @@ import ChapterLink from './../components/chapterLink';
     },
     data: () => ({
       sectionName: SECTIONS.chapters,
-      heightAdjustment: 1.3,
+      heightAdjustment: 1.5,
       chapters: CHAPTER_CONFIG,
     }),
   }
@@ -39,6 +39,13 @@ import ChapterLink from './../components/chapterLink';
   &-chapters {
     background: black;
     z-index: 2;
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+    }
   }
 }
 </style>

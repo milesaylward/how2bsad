@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "npm run serve"
+    "start": "npm run serve",
+    "deploy": "yarn build && cd dist && surge ./ http://how-2-b-sad.surge.sh/"
   },
   "dependencies": {
     "fastdom": "^1.0.9",

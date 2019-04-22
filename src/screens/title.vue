@@ -58,7 +58,6 @@ import { mapState } from 'vuex';
 import TweenMax from 'gsap';
 import sectionMixin from './../mixins/section-mixin';
 import { SECTIONS } from '../core/config';
-import Title from './../assets/title.svg';
 
 
   export default {

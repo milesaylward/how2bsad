@@ -44,7 +44,7 @@ export default {
         landing: this.windowWidth,
         title: this.windowWidth * 2,
         about: this.windowHeight,
-        chapters: this.windowHeight * 1.3, 
+        chapters: this.windowHeight * 1.5, 
         thresh: THRESHHOLDS.default * 3,
       }
     },

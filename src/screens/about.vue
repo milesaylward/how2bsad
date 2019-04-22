@@ -172,6 +172,7 @@ import { SECTIONS } from '../core/config';
 </script>
 
 <style lang="scss">
+@import '~@/styles/_vars.scss';
 .screen {
   &-about {
     background: black;
@@ -185,6 +186,7 @@ import { SECTIONS } from '../core/config';
       display: flex;
       h1 {
         font-size: 42px;
+        font-family: $fontBold;
         text-transform: uppercase;
         line-height: 60px;
         color: white;
@@ -224,6 +226,7 @@ import { SECTIONS } from '../core/config';
           max-width: 420px;
           font-size: 18px;
           line-height: 33px;
+          font-family: $font;
         }
       }
       &--right {
