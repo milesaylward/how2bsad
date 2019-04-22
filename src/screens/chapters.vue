@@ -28,7 +28,7 @@ import ChapterLink from './../components/chapterLink';
     },
     data: () => ({
       sectionName: SECTIONS.chapters,
-      heightAdjustment: 1.5,
+      heightAdjustment: 1.8,
       chapters: CHAPTER_CONFIG,
     }),
   }
@@ -43,8 +43,8 @@ import ChapterLink from './../components/chapterLink';
       display: flex;
       flex-wrap: wrap;
       width: 100%;
-      height: 100%;
       justify-content: center;
+      // height: 100%;
     }
   }
 }

@@ -8,7 +8,7 @@
   >
   <div class="title-text">
    <div class="title-text-canvas" :class="{'title-text-canvas--visible': isScrolling}">
-      <canvas ref="canvas" class="title-canvas"/>
+      <canvas ref="canvas" class="title-canvas" />
    </div>
    <div class="title-hide-border" />
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 132" class="svg-title" ref="svgTitle">
@@ -66,6 +66,7 @@ import { SECTIONS } from '../core/config';
     data: () => ({
       widthAdjustment: 2,
       sectionName: SECTIONS.title,
+      canvas: null,
       timeouts: [],
       hasAnimated: false,
     }),
@@ -77,6 +78,7 @@ import { SECTIONS } from '../core/config';
     },
     methods: {
       initCanvas() {
+        this.canvas = this.$refs.canvas;
         this.$refs.canvas.width = this.windowWidth * 1.3;
         this.$refs.canvas.height = this.windowWidth / 4.81;
         this.ctx = this.$refs.canvas.getContext('2d');
@@ -118,7 +120,11 @@ import { SECTIONS } from '../core/config';
     },
     watch: {
       windowWidth(val) {
-        if (val) this.initCanvas();
+        if (!this.canvas) this.initCanvas();
+        else {
+          this.$refs.canvas.width = this.windowWidth * 1.3;
+          this.$refs.canvas.height = this.windowWidth / 4.81;
+        }
       },
       scrollPosition() {
         const { width, x } = this.$refs.canvas.getBoundingClientRect();
@@ -182,8 +188,9 @@ import { SECTIONS } from '../core/config';
 
     &-arrow {
       position: absolute;
-      width: 500px;
+      width: 30vw;
       transform: rotate(20deg);
+      min-width: 307px;
       top: 100%;
       left: 39%;
       z-index: 10;
@@ -195,7 +202,8 @@ import { SECTIONS } from '../core/config';
     }
     &-svg-text {
       position: absolute;
-      width: 800px;
+      width: 45vw;
+      min-width: 461px;
       top: 116%;
       left: 63%;
       path {

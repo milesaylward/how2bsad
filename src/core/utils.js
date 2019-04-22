@@ -25,7 +25,7 @@ export function scrollHelper({ baseStyles, section }) {
         titleFinalX = THRESHHOLDS.landingThresh + (windowWidth * 2),
         titleFinalY = titleFinalX + windowHeight + THRESHHOLDS.default,
         aboutFinalY = titleFinalY + windowHeight + THRESHHOLDS.default,
-        chapterFinalY = aboutFinalY + (windowHeight / 1.5);
+        chapterFinalY = aboutFinalY + (windowHeight);
 
 
   if (scrollPos < 1) {

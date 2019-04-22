@@ -184,6 +184,8 @@ import { SECTIONS } from '../core/config';
       margin: 0 auto;
       color: white;
       display: flex;
+      justify-content: center;
+      align-items: center;
       h1 {
         font-size: 42px;
         font-family: $fontBold;
@@ -209,16 +211,14 @@ import { SECTIONS } from '../core/config';
         }
       }
       &--left, &--right {
-        width: 50%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-60%);
         flex-basis: 1 1 auto;
+        transform: translateY(-100px);
       }
       &--left {
-        left: 12%;
         z-index: 2;
         text-align: left;
+        margin-left: 100px;
+        min-width: 446px;
         h1 {
           max-width: 446px;
         }
@@ -230,7 +230,7 @@ import { SECTIONS } from '../core/config';
         }
       }
       &--right {
-        right: 10%;
+        transform: translate(-100px, -100px);
         .image-container {
           position: relative;
         }

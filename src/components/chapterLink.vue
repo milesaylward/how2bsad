@@ -56,28 +56,56 @@ export default {
 </script>
 
 <style lang="scss">
+@import './../styles/_vars';
+
 .chapter-link {
   position: relative;
   width: 620px;
-  height: 620px;
   background-color: #555;
-  padding: 50px;
+  padding: {
+    top: 50px;
+    left: 50px; 
+    right: 50px;
+  }
+  @include breakpoint(large) {
+    width: 520px;
+  }
+  @include breakpoint(medium) {
+    width: 420px;
+    max-height: 470px;
+  }
+  @include breakpoint(small) {
+    width: 320px;
+    max-height: 370px;
+  }
   .number {
     position: absolute;
     left: 50px;
     top: 50px;
+    @include breakpoint(small) {
+     width: 80px; 
+    }
   }
   .photo {
     display: block;
     width: 100%;
     margin: 0 auto;
     max-height: 540px;
+    @include breakpoint(large) {
+      max-height: 520px;
+    }
+    @include breakpoint(medium) {
+      max-height: 366px;
+    }
   }
   .no-photo {
     background: black;
     width: 100%;
     height: 100%;
     max-height: 540px;
+    @media screen and ( max-width: 1439px ) {
+      max-height: 454px;
+    }
   }
   .title {
     display: block;
@@ -85,6 +113,13 @@ export default {
     max-height: 134px;
     margin-left: auto;
     margin-right: 0;
+  }
+  &.family {
+    .number {
+      @include breakpoint(small) {
+        width: 50px;
+      }
+    }
   }
   &.love {
     background: white;
@@ -97,11 +132,21 @@ export default {
     .title {
       max-width: 300px;
     }
+    .number {
+      @include breakpoint(small) {
+        width: 70px;
+      }
+    }
   }
   &.now {
     background: #292929;
     .title {
       max-width: 260px;
+    }
+    .number {
+      @include breakpoint(small) {
+        width: 75px;
+      }
     }
   }
 }

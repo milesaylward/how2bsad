@@ -39,36 +39,9 @@ export default {
         baseStyles: this.containerStyle
       });
     },
-    sectionsSizes() {
-      return {
-        landing: this.windowWidth,
-        title: this.windowWidth * 2,
-        about: this.windowHeight,
-        chapters: this.windowHeight * 1.5, 
-        thresh: THRESHHOLDS.default * 3,
-      }
-    },
     ...mapGetters(['containerStyle']),
     ...mapState(['scrollPosition', 'windowWidth', 'windowHeight'])
   },
-  methods: {
-    setBodyHeight() {
-      let height = 0;
-      Object.keys(this.sectionsSizes).map((key) => {
-        height += this.sectionsSizes[key];
-      });
-      document.body.style.height = `${height}px`;
-      this.setBodyHeightGlobal({ height });
-    },
-    ...mapMutations({
-      setBodyHeightGlobal: SET_BODY_HEIGHT
-    })
-  },
-  mounted() {
-    setTimeout(() => {
-      this.setBodyHeight();
-    }, 500);
-  }
 }
 </script>
 

@@ -2,15 +2,35 @@ import Vue from 'vue';
 import fastdom from 'fastdom';
 import store from './store';
 import * as mutationTypes from './mutation-types';
+import { THRESHHOLDS } from './config';
 
 const mediaListeners = new Vue({
   data: () => ({
     isScrolling: false,
+    timeouts: [],
   }),
+  computed: {
+    windowWidth() {
+      return store.state.windowWidth
+    },
+    windowHeight() {
+      return store.state.windowHeight
+    },
+    sectionsSizes() {
+      return {
+        landing: this.windowWidth,
+        title: this.windowWidth * 2,
+        about: this.windowHeight,
+        chapters: this.windowHeight * 2.2, 
+        thresh: THRESHHOLDS.default * 3,
+      }
+    },
+  },
   created() {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('scroll', this.handleScroll);
     this.handleResize();
+    this.setBodyHeight();
   },
   methods: {
     handleResize() {
@@ -23,10 +43,19 @@ const mediaListeners = new Vue({
 
       fastdom.mutate(() => {
         store.commit(mutationTypes.SET_WINDOW_SIZE, {
-          width: innerWidth,
+          width: innerWidth > 1024 ? innerWidth : 1024,
           height: innerHeight,
         });
+        this.setBodyHeight();
       });
+    },
+    setBodyHeight() {
+      let height = 0;
+      Object.keys(this.sectionsSizes).map((key) => {
+        height += this.sectionsSizes[key];
+      });
+      document.body.style.height = `${height}px`;
+      store.commit(mutationTypes.SET_BODY_HEIGHT, { height });
     },
     handleScroll(e) {
       let scrollY, 
@@ -50,7 +79,7 @@ const mediaListeners = new Vue({
       } else {
         store.commit(mutationTypes.SET_AT_PAGE_BOTTOM, false);
       }
-    }
+    },
   },
 });
 

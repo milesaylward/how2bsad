@@ -15,6 +15,24 @@
        url('~@/assets/fonts/AlrightSans-Bold.svg') format('svg');
 }
 
+@mixin breakpoint($type) {
+  @if $type == large {
+    @media screen and ( max-width: 1439px ) {
+      @content;
+    }
+  }
+  @if $type == medium {
+    @media screen and ( max-width: 1239px ) {
+      @content;
+    }
+  }
+  @if $type == small {
+    @media screen and ( max-width: 1039px ) {
+      @content;
+    }
+  }
+}
+
 
 
 $fontBold: AlrightSansBold;
