@@ -49,7 +49,7 @@ export function scrollHelper({ baseStyles, section }) {
   if (SECTIONS[section] === SECTIONS.title && activeSections.title) {
     if (scrollPos < titleFinalX) {
       scrollStyles.transform = `translate3d(-${scrollPos - THRESHHOLDS.landingThresh}px, 0, 0) `;
-    } else if (scrollPos < titleFinalY) {
+    } else if (scrollPos < titleFinalY || scrollPos > titleFinalX + THRESHHOLDS.default && !activeSections.about) {
       if (scrollPos < titleFinalX + THRESHHOLDS.default) {
         scrollStyles.transform = `translate3d(-${titleFinalX - THRESHHOLDS.landingThresh}px, 0, 0) `;
       } else {
@@ -72,15 +72,18 @@ export function scrollHelper({ baseStyles, section }) {
         if (!activeSections[SECTIONS.chapters]) setActiveSection(SECTIONS.chapters);
         scrollStyles.transform = `translate3d(0, -${scrollPos - (titleFinalX + THRESHHOLDS.default)}px, 0)`;
       }
+    } else {
+      if (!activeSections[SECTIONS.chapters]) setActiveSection(SECTIONS.chapters);
     }
   }
+
   if (SECTIONS[section] === SECTIONS.chapters && activeSections.chapters) {
     if (scrollPos > aboutFinalY - windowHeight && scrollPos < chapterFinalY) {
       scrollStyles.transform = `translate3d(0, -${scrollPos - (aboutFinalY - windowHeight)}px, 0)`;
     } else if (scrollPos > aboutFinalY) {
       scrollStyles.transform = `translate3d(0, -${chapterFinalY - (aboutFinalY - windowHeight)}px, 0)`;
     }
-  }
+  } else if (scrollPos > aboutFinalY - windowHeight && scrollPos < chapterFinalY && !activeSections.chapters) setActiveSection(SECTIONS.chapters);
   return {
     ...scrollStyles,
     ...baseStyles,

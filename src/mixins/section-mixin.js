@@ -1,5 +1,5 @@
 import { mapState, mapGetters } from 'vuex';
-import { SECTIONS } from './../core/config';
+import { SECTIONS, THRESHHOLDS } from './../core/config';
 import { scrollHelper } from './../core/utils';
 
 export default {
@@ -7,6 +7,7 @@ export default {
     widthAdjustment: 1,
     heightAdjustment: 1,
     sectionName: null,
+    thresholds: THRESHHOLDS
   }),
   computed: {
     ...mapState([
@@ -54,5 +55,8 @@ export default {
     sectionStyles() {
       return scrollHelper({ section: this.sectionName, baseStyles: this.baseStyles });
     }
+  }, 
+  mounted() {
+    scrollHelper({ section: this.sectionName, baseStyles: this.baseStyles });
   }
 }

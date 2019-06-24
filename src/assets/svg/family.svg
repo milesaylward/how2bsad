@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 363.01 122.4"><defs><style>.cls-1{font-size:100px;fill:none;stroke:#fff;stroke-miterlimit:10;font-family:AlrightSans-Bold, Alright Sans;font-weight:700;}.cls-2{letter-spacing:-0.07em;}.cls-3{letter-spacing:-0.09em;}</style></defs><title>Asset 10</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><text class="cls-1" transform="translate(0.5 85.5)"><tspan class="cls-2">F</tspan><tspan x="54.5" y="0">AMI</tspan><tspan class="cls-3" x="240.6" y="0">L</tspan><tspan x="291.3" y="0">Y</tspan></text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 363.01 122.4">
+  <title>Asset 10</title>
+  <g data-name="Layer 2">
+    <text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#fff" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" font-weight="700" data-name="Layer 1">
+      <tspan letter-spacing="-.07em">F</tspan>
+      <tspan x="54.5" y="0">AMI</tspan>
+      <tspan x="240.6" y="0" letter-spacing="-.09em">L</tspan>
+      <tspan x="291.3" y="0">Y</tspan>
+    </text>
+  </g>
+</svg>

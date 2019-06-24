@@ -1,57 +1,54 @@
 <template>
-  <div class="chapter-link" :class="{[chapter.name] : true}">
-    <img class="number" :src="chapter.number" alt="">
-    <img class="photo" :src="chapter.photo" alt="" v-if="chapter.photo">
-    <div class="no-photo" v-else />
-    <component :is="titleSVG" class="title" />
-  </div>
+  <Appearable :threshold="0.85" @can-appear="handleAppear">
+    <div class="chapter-link" :class="{[chapter.name] : true}" @mouseenter="handleHover('enter')" @mouseleave="handleHover('leave')">
+      <img class="number" :src="chapter.number" alt="">
+      <img class="photo" :src="chapter.photo" alt="" v-if="chapter.photo">
+      <HandDrawn :svg="chapter.svg" :canDraw="canDraw" :chapterName="chapter.name" :drawHover="hoverAnimate" />
+      <div v-html="chapter.svg.title" class="title" />
+    </div>
+  </Appearable>
 </template>
 
 <script>
-import familySvg from './../assets/svg/family.svg';
-import loveSvg from './../assets/svg/love.svg';
-import workSvg from './../assets/svg/work.svg';
-import nowSvg from './../assets/svg/now.svg';
+import HandDrawn from './handDrawn';
 
 export default {
   name: 'chapterLink',
+  components: {
+    HandDrawn
+  },
   props: {
     chapter: {
       type: Object,
       required: true,
+    },
+    index: {
+      type: Number
     }
   },
   data: () => ({
-    familySvg,
-    loveSvg,
-    workSvg,
-    nowSvg,
+    canDraw: false,
+    hoverAnimate: false,
   }),
   computed: {
-    titleSVG() {
-      let svg;
-      switch (this.chapter.name) {
-        case 'family':
-          svg = this.familySvg;
-          break;
-        case 'love':
-          svg = this.loveSvg;
-          break;
-        case 'work':
-          svg = this.workSvg;
-          break;
-        case 'now':
-          svg = this.nowSvg;
-          break;
-        default:
-          break;
-      }
-      return svg;
+    delay() {
+      return this.index % 2 ? 300 : 400
     }
   },
-  mounted() {
-    console.log(this.titleSVG);
-  },
+  methods: {
+    handleAppear() {
+      setTimeout(() => {
+        this.canDraw = true;
+      }, this.delay);
+    },
+    handleHover(type) {
+      if (type === 'enter') {
+        this.hoverAnimate = true;
+      } else {
+        this.hoverAnimate = false;
+      }
+    }
+  }
 }
 </script>
 
@@ -85,6 +82,8 @@ export default {
     @include breakpoint(small) {
      width: 80px; 
     }
+  }
+  &:hover {
   }
   .photo {
     display: block;
@@ -149,5 +148,19 @@ export default {
       }
     }
   }
+}
+.appearable {
+  .chapter-link {
+    transform: translateY(10%);
+    opacity: 0;
+    transition: transform 300ms $easeOutQuad, opacity 300ms $easeOutQuad;
+    &.love, &.now {
+      transition-delay: 100ms;
+    }
+  }
+  &--can-appear {
+    .chapter-link { opacity: 1; transform: translateY(0) };
+  }
+
 }
 </style>

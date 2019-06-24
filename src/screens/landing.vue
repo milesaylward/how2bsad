@@ -1,6 +1,6 @@
 <template>
   <div class="screen screen-landing" :style="sectionStyles">
-    <h1>landing page</h1>
+    <p :class="{hidden}">Scroll</p>
   </div>
 </template>
 
@@ -13,20 +13,40 @@ export default {
   data: () => ({
     sectionName: SECTIONS.landing,
   }),
+  computed: {
+    hidden() {
+      return this.scrollPosition > this.thresholds.landingThresh;
+    }
+  },
 }
 </script>
 
 <style lang="scss">
+@import './../styles/_vars';
 .screen {
   text-align: center;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  h1 {
-    margin: 0;
-  }
-  &-landing {  
+  &-landing {
     z-index: 5;
+    p {
+      transition: opacity 300ms $easeOutQuint;
+      margin: 0;
+      font-family: $font;
+      color: white;
+      margin: {
+        top: 130px;
+        left: 10px;
+      }
+      font-size: 18px;
+      line-height: 33px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      &.hidden {
+        opacity: 0;
+      }
+    }
   }
 }
 </style>

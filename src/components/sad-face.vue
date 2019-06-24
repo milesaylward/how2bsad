@@ -1,6 +1,6 @@
 <template>
   <div class="sad-face" :style="faceStyles">
-    <svg width="64" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
       <g>
         <g fill="inherit">
           <path d="M32,0C14.355,0,0,14.355,0,32s14.355,32,32,32s32-14.355,32-32S49.645,0,32,0z M32,60    C16.561,60,4,47.439,4,32S16.561,4,32,4s28,12.561,28,28S47.439,60,32,60z"/>
@@ -24,11 +24,11 @@ export default {
     faceStyles() {
       if (this.scrollPosition < THRESHHOLDS.landingThresh) {
         return {
-         transform: `translate(-50%, -50%) rotate(${(this.scrollPosition / (this.bodyHeight / 2) * 360)}deg)`
+         transform: `translate(-50%, -50%) rotate(${(this.scrollPosition / (this.bodyHeight / 10.2) * 360)}deg)`
         } 
       } else {
         return {
-          transform: `translate(-50%, -50%) rotate(${(this.scrollPosition / (this.bodyHeight / 2) * 410)}deg)`,
+          transform: `translate(-50%, -50%) rotate(${(this.scrollPosition / (this.bodyHeight / 10.2) * 360)}deg)`,
           top: '64px',
           left: '64px',
         } 
@@ -44,6 +44,8 @@ export default {
   z-index: 8;
   top: 50%;
   left: 50%;
+  width: 70px;
+  height: 70px;
   transform: translate(-50%, -50%);
   transform-origin: center center;
   transition: 

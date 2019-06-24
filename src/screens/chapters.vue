@@ -8,7 +8,8 @@
   >
     <div class="screen-chapters__container">
       <ChapterLink 
-        v-for="link in chapters" 
+        v-for="(link, index) in chapters"
+        :index="index"
         :key="link.name"
         :chapter="link"
       />
