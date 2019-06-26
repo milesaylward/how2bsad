@@ -39,7 +39,7 @@ export default {
         top: 130px;
         left: 10px;
       }
-      font-size: 18px;
+      font-size: 16px;
       line-height: 33px;
       letter-spacing: 5px;
       text-transform: uppercase;

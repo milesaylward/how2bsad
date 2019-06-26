@@ -9,7 +9,7 @@
   >
   <div class="screen-about-container">
     <div class="chapter-callout">
-      <div class="title-container" @mouseenter="titleEnter" @mouseleave="titleLeave">
+      <div class="title-container">
         <div class="copy-bg">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 61.25" class="chapter-copy">
             <g id="box" data-name="Layer 1">
@@ -49,7 +49,10 @@
       </svg>
     </div>
     <div class="screen-about-container--left">
-      <h1 ref="title">“HOW TO BE SAD” <br>IS ABOUT WHY I AM THE WAY THAT I AM.</h1>
+      <div class="title" ref="title">
+        <span class="header-svg" v-html="aboutHeader" />
+        <NoiseCanvas />
+      </div>
       <p ref="copy">
         This is a digital memoir about my journey as a creative dealing with depression.
         Supplemented with posters and motion graphics, the project follows a series of
@@ -73,6 +76,7 @@ import sectionMixin from './../mixins/section-mixin';
 import { SECTIONS } from '../core/config';
 import NoiseCanvas from './../components/noiseCanvas';
 import HeadScribble from './../assets/svg/head.svg';
+import aboutHeader from '@/assets/svg/about-header.svg';
 
 export default {
   name: 'about-section',
@@ -83,6 +87,7 @@ export default {
     animIn: false,
     svgAnimated: false,
     HeadScribble,
+    aboutHeader,
   }),
   watch: {
     scrollPosition() {
@@ -104,12 +109,6 @@ export default {
   methods: {
     getCharHTML(letter) {
       return letter !== ' ' ? letter : '&nbsp;'
-    },
-    titleEnter() {
-      TweenMax.to(this.$refs.underline, .5, { drawSVG: '100%', ease: Power1.easeInOut });
-    },
-    titleLeave() {
-      TweenMax.to(this.$refs.underline, .5, { drawSVG: '0', ease: Power1.easeInOut });
     },
     animate() {
       TweenMax.to(this.$refs.title, 1, { y: 0, opacity: 1, ease: Quint.easeOut });
@@ -139,7 +138,9 @@ export default {
       });
     },
     animateChapterTitle() {
-      TweenMax.staggerFromTo(this.chapterTitle, .3, { y: '-20px', opacity: 0 }, { y: 0, opacity: 1, ease: Quint.easeOut }, .05);
+      TweenMax.staggerFromTo(this.chapterTitle, .3, { y: '-20px', opacity: 0 }, { y: 0, opacity: 1, ease: Quint.easeOut }, .05, () => {
+        TweenMax.to(this.$refs.underline, .5, { drawSVG: '100%', ease: Power1.easeInOut });
+      });
     },
     setBasePositions() {
       TweenMax.set(this.$refs.title, { y: 30, opacity: 0 });
@@ -226,7 +227,9 @@ export default {
         .letters {
           fill: none;
           stroke: white;
-          stroke: 1px;
+          path {
+            stroke-width: 1.5px;
+          }
         }
         svg {
           .underline {
@@ -244,8 +247,28 @@ export default {
         text-align: left;
         margin-left: 100px;
         min-width: 446px;
-        h1 {
-          max-width: 446px;
+        .title {
+          position: relative;
+          z-index: 1;
+          span {
+            display: block;
+          };
+          .header-svg {
+            z-index: 1;
+            svg {
+              display: block;
+              height: 100%;
+              width: 101%;
+            }
+          }
+          .canvas-container {
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 300ms $easeOutQuad;
+          }
+          &:hover {
+            .canvas-container { opacity: 1; }
+          }
         }
         p {
           max-width: 420px;
@@ -255,9 +278,17 @@ export default {
         }
       }
       &--right {
-        transform: translate(-100px, -100px);
+        transform: translate(-86px, -105px);
+        z-index: 1;
         .image-container {
           position: relative;
+        }
+        .scribbles {
+          z-index: 1000;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
         }
         svg {
           stroke: white;

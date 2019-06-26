@@ -49,8 +49,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 80px;
+  width: 45px;
+  height: 45px;
   pointer-events: none;
   z-index: 100;
   border-radius: 50%;
