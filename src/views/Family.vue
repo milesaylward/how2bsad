@@ -375,6 +375,13 @@ export default {
         this.mounted = true;
       }
     }
+  },
+  mounted() {
+    if (this.heroAnimated) {
+      setTimeout(() => {
+        this.mounted = true;
+      }, 500);
+    }
   }
 }
 </script>

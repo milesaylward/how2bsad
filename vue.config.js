@@ -7,6 +7,13 @@ module.exports = {
     svgRule
       .use('raw-loader')
       .loader('raw-loader');
+    if(config.plugins.has('extract-css')) {
+      const extractCSSPlugin = config.plugin('extract-css')
+      extractCSSPlugin && extractCSSPlugin.tap(() => [{
+        filename: '[name].css',
+        chunkFilename: '[name].css'
+      }])
+    }
   },
   css: {
     loaderOptions: {
@@ -15,4 +22,10 @@ module.exports = {
       }
     }
   },
+  configureWebpack: {
+    output: {
+      filename: '[name].js',
+      chunkFilename: '[name].js'
+    }
+  }
 };
