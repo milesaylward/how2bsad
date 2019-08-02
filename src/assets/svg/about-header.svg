@@ -1,7 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" 
   xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 510.81 216.79">
   <defs>
-    <style>.about-header{fill:url(#linear-gradient);}.cls-2{fill:url(#linear-gradient-2);}.cls-3{fill:url(#linear-gradient-3);}.cls-4{fill:url(#linear-gradient-4);}.cls-5{fill:url(#linear-gradient-5);}.cls-6{fill:url(#linear-gradient-6);}.cls-7{fill:url(#linear-gradient-7);}.cls-8{fill:url(#linear-gradient-8);}.cls-9{fill:url(#linear-gradient-9);}.about-header0{fill:url(#linear-gradient-10);}.about-header1{fill:url(#linear-gradient-11);}.about-header2{fill:url(#linear-gradient-12);}.about-header3{fill:url(#linear-gradient-13);}.about-header4{fill:url(#linear-gradient-14);}.about-header5{fill:url(#linear-gradient-15);}.about-header6{font-size:50px;fill:none;stroke:#fff;stroke-miterlimit:10;font-family:AlrightSans-Bold, Alright Sans;font-weight:700;}.about-header7{letter-spacing:-0.03em;}.about-header8{letter-spacing:-0.02em;}.about-header9{letter-spacing:-0.01em;}.cls-20{letter-spacing:-0.01em;}.cls-21{letter-spacing:0em;}.cls-22{letter-spacing:-0.05em;}.cls-23{letter-spacing:-0.09em;}.cls-24{letter-spacing:-0.07em;}</style>
+    <style>
+    @font-face {
+      font-family: 'Alright Sans';
+      src: url('/static/AlrightSans-Bold.woff');
+    }
+    .about-header{  
+      fill:url(#linear-gradient);}
+      .cls-2{fill:url(#linear-gradient-2);}
+      .cls-3{fill:url(#linear-gradient-3);}
+      .cls-4{fill:url(#linear-gradient-4);}
+      .cls-5{fill:url(#linear-gradient-5);}
+      .cls-6{fill:url(#linear-gradient-6);}
+      .cls-7{fill:url(#linear-gradient-7);}
+      .cls-8{fill:url(#linear-gradient-8);}
+      .cls-9{fill:url(#linear-gradient-9);}
+      .about-header0{fill:url(#linear-gradient-10);}
+      .about-header1{fill:url(#linear-gradient-11);}
+      .about-header2{fill:url(#linear-gradient-12);}
+      .about-header3{fill:url(#linear-gradient-13);}
+      .about-header4{fill:url(#linear-gradient-14);}
+      .about-header5{fill:url(#linear-gradient-15);}
+      .about-header6{font-size:50px;fill:none;stroke:#fff;stroke-miterlimit:10;font-family:Alright Sans;font-weight: 500;}.about-header7{letter-spacing:-0.03em;}.about-header8{letter-spacing:-0.02em;}.about-header9{letter-spacing:-0.01em;}.cls-20{letter-spacing:-0.01em;}.cls-21{letter-spacing:0em;}.cls-22{letter-spacing:-0.05em;}.cls-23{letter-spacing:-0.09em;}.cls-24{letter-spacing:-0.07em;
+      
+  </style>
+    }</style>
     <linearGradient id="linear-gradient" x1="328.72" y1="171.53" x2="338.17" y2="171.53" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#000" />
       <stop offset="0.80" stop-color="#000" />
@@ -40,7 +64,7 @@
       <path class="about-header3" d="M276.37,23.57c0-2.45-1.8-4.2-5.35-4.2h-6.6v8.55H271C274.57,27.92,276.37,26.17,276.37,23.57Z"/>
       <path class="about-header4" d="M141.87,102.07c0,7.15,4.35,11.8,10.45,11.8s10.5-4.65,10.5-11.8c0-7-4.3-11.65-10.5-11.65S141.87,95.07,141.87,102.07Z"/>
       <path class="about-header5" d="M84.67,42.52c6.15,0,10.5-4.65,10.5-11.8s-4.3-11.65-10.5-11.65S74.22,23.72,74.22,30.72,78.57,42.52,84.67,42.52Z"/>
-      <text class="about-header6" transform="translate(5.02 48.27)">“H<tspan class="about-header7" x="59.55" y="0">O</tspan>
+      <text stroke-width='1.5' class="about-header6" transform="translate(5.02 48.27)">“H<tspan class="about-header7" x="59.55" y="0">O</tspan>
         <tspan x="98.65" y="0">W </tspan>
         <tspan class="about-header8" x="164.15" y="0">T</tspan>
         <tspan x="196.25" y="0">O BE </tspan>

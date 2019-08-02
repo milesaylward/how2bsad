@@ -26,6 +26,13 @@ export const THRESHHOLDS = {
   default: 500,
 };
 
+export const MEDIA_QUERIES = {
+  lg: '(min-width: 1240px) and (max-width: 1239px)',
+  md: '(min-width: 1040px) and (max-width: 1239px)',
+  sm: '(min-width: 840px) and (max-width: 1039px)',
+  xs: '(max-width: 839px)'
+};
+
 export const SECTIONS = {
   landing: 'landing',
   title: 'title',

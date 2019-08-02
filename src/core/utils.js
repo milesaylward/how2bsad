@@ -18,14 +18,21 @@ function setAnimateSection(section) {
 }
 
 export function scrollHelper({ baseStyles, section }) {
+  const titleSize = store.state.windowWidth * 1.6 > 900 ? store.state.windowWidth * 1.6 : 900;
+  const aboutSize = store.state.windowHeight > 850 ? store.state.windowHeight : 850;
+  const chapterSize = store.state.windowHeight * 2 > 1750 ? (store.state.windowHeight * 2) : 1750;
+  // let offset = 200;
+  if(store.state.windowWidth < 1440) {
+    // offset = 400;
+  }
   const scrollPos = store.state.scrollPosition,
         windowWidth = store.state.windowWidth,
         windowHeight = store.state.windowHeight,
         activeSections = store.state.activeSections,
-        titleFinalX = THRESHHOLDS.landingThresh + (windowWidth * 2),
+        titleFinalX = THRESHHOLDS.landingThresh + (titleSize),
         titleFinalY = titleFinalX + windowHeight + THRESHHOLDS.default,
-        aboutFinalY = titleFinalY + windowHeight + THRESHHOLDS.default,
-        chapterFinalY = aboutFinalY + (windowHeight);
+        aboutFinalY = titleFinalY + aboutSize + THRESHHOLDS.default,
+        chapterFinalY = titleFinalY + aboutSize + chapterSize;
 
 
   if (scrollPos < 1) {
@@ -78,7 +85,7 @@ export function scrollHelper({ baseStyles, section }) {
   }
 
   if (SECTIONS[section] === SECTIONS.chapters && activeSections.chapters) {
-    if (scrollPos > aboutFinalY - windowHeight && scrollPos < chapterFinalY) {
+    if (scrollPos > (aboutFinalY - windowHeight) && scrollPos < chapterFinalY) {
       scrollStyles.transform = `translate3d(0, -${scrollPos - (aboutFinalY - windowHeight)}px, 0)`;
     } else if (scrollPos > aboutFinalY) {
       scrollStyles.transform = `translate3d(0, -${chapterFinalY - (aboutFinalY - windowHeight)}px, 0)`;

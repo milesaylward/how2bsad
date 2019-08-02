@@ -8,4 +8,11 @@ module.exports = {
       .use('raw-loader')
       .loader('raw-loader');
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `@import "@/styles/_vars.scss";`
+      }
+    }
+  },
 };

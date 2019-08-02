@@ -41,11 +41,13 @@ import memoir from '@/assets/svg/memoir.svg'
       NoiseCanvas
     },
     data: () => ({
-      widthAdjustment: 2,
+      widthAdjustment: 1.5,
       sectionName: SECTIONS.title,
       canvas: null,
       timeouts: [],
       hasAnimated: false,
+      hasMinWidth: true,
+      minWidth: 900,
       titleArrow,
       memoir,
     }),
@@ -132,7 +134,6 @@ import memoir from '@/assets/svg/memoir.svg'
   .title-canvas-container {
     position: absolute;
     width: 45vw;
-    min-width: 461px;
     top: 138%;
     left: 64%;
     span {
@@ -153,7 +154,6 @@ import memoir from '@/assets/svg/memoir.svg'
   }
   .title {
     &-text {
-      margin-left: 25%;
       position: relative;
       .svg-title {
         width: 130vw;
@@ -179,7 +179,6 @@ import memoir from '@/assets/svg/memoir.svg'
     &-arrow {
       position: absolute;
       width: 30vw;
-      min-width: 307px;
       top: 110%;
       left: 39%;
       z-index: 10;

@@ -14,6 +14,15 @@ export default new Vuex.Store({
     scrollPosition: 0,
     atPageBottom: false,
     isScrolling: false,
+    elementHovered: false,
+    heroAnimated: false,
+    activeChapter: null,
+    breakpoints: {
+      mediaLg: false,
+      mediaMd: false,
+      mediaSm: false,
+      mediaXs: false,
+    },
     animateSection: {
       about: false,
       chapters: false,
@@ -33,6 +42,21 @@ export default new Vuex.Store({
     [types.SET_SCROLL_POSITION](state, { position }) {
       state.scrollPosition = position;
     },
+    [types.MEDIA_SET_LARGE](state, { matches }) {
+      state.breakpoints.mediaLg = matches;
+    },
+    [types.MEDIA_SET_MED](state, { matches }) {
+      state.breakpoints.mediaMd = matches;
+    },
+    [types.MEDIA_SET_SMALL](state, { matches }) {
+      state.breakpoints.mediaSm = matches;
+    },
+    [types.MEDIA_SET_XSMALL](state, { matches }) {
+      state.breakpoints.mediaXs = matches;
+    },
+    [types.SET_ACTIVE_CHAPTER](state, payload) {
+      state.activeChapter = payload;
+    },
     [types.SET_INACTIVE_SECTION](state, { section }) {
       state.activeSections[section] = false;
     },
@@ -51,6 +75,17 @@ export default new Vuex.Store({
     [types.SET_ANIMATE_SECTION](state, { section }) {
       state.animateSection[section] = true;
     },
+    [types.SET_ELEMENT_HOVERED](state, bool) {
+      state.elementHovered = bool;
+    },
+    [types.SET_HERO_ANIMATED](state, bool) {
+      state.heroAnimated = bool;
+    }
+  },
+  actions: {
+    setElementHovered({ commit }, bool) {
+      commit(types.SET_ELEMENT_HOVERED, bool);
+    }
   },
   getters: {
     containerStyle(state) {

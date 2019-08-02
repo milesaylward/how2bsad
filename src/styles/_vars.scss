@@ -17,17 +17,22 @@
 
 @mixin breakpoint($type) {
   @if $type == large {
-    @media screen and ( max-width: 1439px ) {
+    @media screen and (min-width: 1240px) and (max-width: 1439px) {
       @content;
     }
   }
   @if $type == medium {
-    @media screen and ( max-width: 1239px ) {
+    @media screen and (min-width: 1040px) and (max-width: 1239px) {
       @content;
     }
   }
   @if $type == small {
-    @media screen and ( max-width: 1039px ) {
+    @media screen and (min-width: 840px) and (max-width: 1039px) {
+      @content;
+    }
+  }
+  @if $type == xsmall {
+    @media screen and (max-width: 839px) {
       @content;
     }
   }
@@ -37,6 +42,31 @@
 
 $fontBold: AlrightSansBold;
 $font: AlrightSans;
+
+body {
+  h1, h2 {
+    font-family: $fontBold;
+  }
+  h1 {
+    font-size: 42px;
+    line-height: 65px;
+  }
+  h1, h2, h3, h4, h5, h6, p, a {
+    color: white;
+    margin: 0;
+  }
+  a:visited {
+    color: #ddd;
+  }
+  p, a {
+    font-family: $font;
+    font-size: 18px;
+    line-height: 33px;
+  }
+  a:hover {
+    cursor: none;
+  }
+}
 
 $easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
 $easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -57,3 +87,10 @@ $easeInOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
 $easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
 $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
 $easeInOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$authenticMotion: cubic-bezier(.4,0,.2,1);
+
+$appearDistance: 30px;
+$appearDuration: 0.6s;
+$appearEase: $authenticMotion;
+$appearableAnimBaseDelay: 0ms;
+

@@ -1,9 +1,9 @@
 <template>
-  <Appearable :threshold="0.85" @can-appear="handleAppear">
-    <div class="chapter-link" :class="{[chapter.name] : true}" @mouseenter="handleHover('enter')" @mouseleave="handleHover('leave')">
+  <Appearable :threshold="0.35" @can-appear="handleAppear">
+    <div class="chapter-link" :class="{[chapter.name] : true}" @mouseenter="handleHover('enter')" @mouseleave="handleHover('leave')" ref="root">
       <img class="number" :src="chapter.number" alt="">
       <img class="photo" :src="chapter.photo" alt="" v-if="chapter.photo">
-      <HandDrawn :svg="chapter.svg" :canDraw="canDraw" :chapterName="chapter.name" :drawHover="hoverAnimate" />
+      <HandDrawn :svg="chapter.svg" :canDraw="canDraw" :chapterName="chapter.name" :drawHover="hoverAnimate || activeChapter" />
       <div v-html="chapter.svg.title" class="title" />
     </div>
   </Appearable>
@@ -11,6 +11,7 @@
 
 <script>
 import HandDrawn from './handDrawn';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'chapterLink',
@@ -24,6 +25,10 @@ export default {
     },
     index: {
       type: Number
+    },
+    activeChapter: {
+      type: Boolean,
+      deafult: false
     }
   },
   data: () => ({
@@ -44,10 +49,13 @@ export default {
     handleHover(type) {
       if (type === 'enter') {
         this.hoverAnimate = true;
+        this.setElementHovered(true);
       } else {
         this.hoverAnimate = false;
+        this.setElementHovered(false);
       }
-    }
+    },
+    ...mapActions(['setElementHovered']),
   }
 }
 </script>
@@ -75,6 +83,10 @@ export default {
     width: 320px;
     max-height: 370px;
   }
+  @include breakpoint(xsmall) {
+    width: 200px;
+    max-height: 250px;
+  }
   .number {
     position: absolute;
     left: 50px;
@@ -82,6 +94,7 @@ export default {
     @include breakpoint(small) {
      width: 80px; 
     }
+    @include breakpoint(xsmall) { width: 50px ;}
   }
   &:hover {
   }
@@ -108,44 +121,96 @@ export default {
   }
   .title {
     display: block;
+    width: 80%;
     max-width: 400px;
     max-height: 134px;
     margin-left: auto;
     margin-right: 0;
+    @include breakpoint(large) {
+      max-width: 308px;
+    }
+    @include breakpoint(medium) {
+      max-width: 230px;
+    }
+    @include breakpoint(small) {
+      max-width: 180px;
+    }
+    @include breakpoint(xsmall) {
+      max-width: 120px;
+    }
   }
   &.family {
     .number {
       @include breakpoint(small) {
         width: 50px;
       }
+      @include breakpoint(xsmall) { width: 30px ;}
     }
   }
   &.love {
     background: white;
     .title {
       max-width: 290px;
+      @include breakpoint(large) {
+        max-width: 230px;
+      }
+      @include breakpoint(medium) {
+        max-width: 171px;
+      }
+      @include breakpoint(small) {
+        max-width: 135px;
+      }
+      @include breakpoint(xsmall) {
+        max-width: 90px;
+      }
     }
   }
   &.work {
     background: #ddd;
     .title {
       max-width: 300px;
+      @include breakpoint(large) {
+        max-width: 250px;
+      }
+      @include breakpoint(medium) {
+        max-width: 191px;
+      }
+      @include breakpoint(small) {
+        max-width: 150px;
+      }
+      @include breakpoint(xsmall) {
+        max-width: 105px;
+      }
     }
     .number {
       @include breakpoint(small) {
         width: 70px;
       }
+      @include breakpoint(xsmall) { width: 40px ;}
     }
   }
   &.now {
     background: #292929;
     .title {
       max-width: 260px;
+      @include breakpoint(large) {
+        max-width: 213px;
+      }
+      @include breakpoint(medium) {
+        max-width: 161px;
+      }
+      @include breakpoint(small) {
+        max-width: 128.5px;
+      }
+      @include breakpoint(xsmall) {
+        max-width: 90px;
+      }
     }
     .number {
       @include breakpoint(small) {
         width: 75px;
       }
+      @include breakpoint(xsmall) { width: 45px ;}
     }
   }
 }

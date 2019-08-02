@@ -3,12 +3,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { TweenMax } from 'gsap';
+import dat from 'dat-gui';
+
   export default {
     name: 'custom-cursor',
     data: () => ({
       xPos: 0,
       yPos: 0,
+      clientX: 0,
+      clientY: 0,
       visible: false,
+      countDown: false,
+      params: {
+	      baseFrequencyX: 0.0,
+        baseFrequencyY: 0.0,
+        maxFrequency: 0.06,
+        step: 0.0004,
+      }
     }),
     computed: {
       cursorStyles() {
@@ -16,13 +29,76 @@
           top: `${this.yPos}px`,
           left: `${this.xPos}px`
         };
+      },
+      turbulence() {
+        return document.querySelectorAll('#filter feTurbulence')[0];        
+      },
+      ...mapState(['scrollPosition', 'elementHovered'])
+    },
+    watch: {
+      scrollPosition() {
+        this.handleMouseMove();
+      },
+      $route() {
+        this.stopAnimate();
+      },
+      elementHovered(val) {
+        if (val) {
+          this.animate();
+        } else {
+          this.stopAnimate();
+        }
       }
     },
     methods: {
       handleMouseMove(e) {
+        if (e) {
+          this.clientX = e.clientX;
+          this.clientY = e.clientY;
+        }
         this.visible = true;
-        this.xPos = e.clientX;
-        this.yPos = e.clientY;
+        const offset = this.$route.name === 'home' ? 0 : this.scrollPosition;
+        this.xPos = this.clientX;
+        this.yPos = this.clientY + offset;
+      },
+      checkDirection() {
+        const { baseFrequencyX, baseFrequencyY, step, maxFrequency } = this.params;
+        if (!this.countDown) {
+          if (baseFrequencyX < maxFrequency && baseFrequencyY < maxFrequency) {
+            return false;
+          } else {
+            this.countDown = true;
+            return true;
+          }
+        } else {
+          if (baseFrequencyX > 0.01 && baseFrequencyY > 0.01) {
+            return true;
+          } else {
+            this.countDown = false;
+            return false;
+          }
+        }
+      },
+      stopAnimate() {
+        cancelAnimationFrame(this.animationFrame);
+        TweenMax.to(this.turbulence, 0.5, { attr:{"baseFrequency":"0,0"} });
+        this.params.baseFrequencyX = 0;
+        this.params.baseFrequencyY = 0;
+      },
+      animate() {
+        const { baseFrequencyX, baseFrequencyY, step, maxFrequency } = this.params;
+        if (!this.turbulence) { 
+          return;
+        }
+        if (this.checkDirection()) {
+          this.params.baseFrequencyX -= step; 
+          this.params.baseFrequencyY -= step;
+        } else {
+          this.params.baseFrequencyX += step;
+          this.params.baseFrequencyY += step;
+        }        
+        this.turbulence.setAttribute('baseFrequency', `${baseFrequencyX}  ${baseFrequencyY}`);
+        this.animationFrame = requestAnimationFrame(this.animate);
       },
       handleMouseLeave(e){
         if (e.clientY <= 0 || e.clientX <= 0 || (e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
@@ -34,7 +110,7 @@
       },
     },
     mounted() {
-      window.addEventListener('mousemove', this.handleMouseMove);
+      document.addEventListener('mousemove', this.handleMouseMove);
       document.addEventListener('mouseleave', this.handleMouseLeave);
       document.addEventListener("mouseenter", this.handleMouseLeave);
     },
@@ -47,10 +123,10 @@
 <style lang="scss" scoped>
 .cursor {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 45px;
-  height: 45px;
+  top: 40%;
+  left: 40%;
+  width: 65px;
+  height: 65px;
   pointer-events: none;
   z-index: 100;
   border-radius: 50%;
@@ -58,8 +134,8 @@
   background-color: #fff;
   mix-blend-mode: difference;
   isolation: isolate;
-  opacity: 0;
   transition: opacity 300ms ease-in;
+  filter: url('#filter');
   &.visible {
     opacity: 1;
   }

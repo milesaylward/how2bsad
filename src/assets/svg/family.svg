@@ -1,11 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 363.01 122.4">
-  <title>Asset 10</title>
+  <defs>
+  <style>
+    text {
+      font-weight: bold
+      
+    }
+  </style>
+  </defs>
   <g data-name="Layer 2">
-    <text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#fff" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" font-weight="700" data-name="Layer 1">
-      <tspan letter-spacing="-.07em">F</tspan>
-      <tspan x="54.5" y="0">AMI</tspan>
-      <tspan x="240.6" y="0" letter-spacing="-.09em">L</tspan>
-      <tspan x="291.3" y="0">Y</tspan>
+    <text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#fff" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" data-name="Layer 1">
+      <tspan letter-spacing="-.07em" stroke-width='2'>F</tspan>
+      <tspan x="54.5" y="0" stroke-width='2'>AMI</tspan>
+      <tspan x="240.6" y="0" letter-spacing="-.09em" stroke-width='2'>L</tspan>
+      <tspan x="291.3" y="0" stroke-width='2'>Y</tspan>
     </text>
   </g>
 </svg>

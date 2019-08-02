@@ -22,6 +22,10 @@ export default {
     canDraw: {
       type: Boolean
     },
+    noOffset: {
+      type: Boolean,
+      default: false,
+    },
     drawTime: {
       type: Number,
       default: 0.5,
@@ -119,7 +123,9 @@ export default {
     }
   },
   mounted() {
-    this.setRefs();
+    if (!this.noOffset) {
+      this.setRefs();
+    }
     if (this.canDraw) {
       this.$nextTick(() => {
         this.animateDraw();
@@ -144,10 +150,18 @@ export default {
     transform: translate(-50%, -50%);
     &__drawn {
       &.family {
-        width: 150px;
+        width: 22%;
         bottom: -5%;
         left: 25%;
         top: auto;
+        @include breakpoint(large) {
+          left: 30%;
+          bottom: -7%;
+        }
+        @include breakpoint(medium) {
+          left: 33%;
+          bottom: -8%;
+        }
       }
       &.work {
         top: auto;
@@ -155,12 +169,14 @@ export default {
         left: 40%;
         width: 23%;
         transform: translate(-50%, -50%);
+        @include breakpoint(xsmall) { width: 20%; left: 35%; }
       }
       &.now {
         width: 60%;
         top: 45%;
         left: 45%;
-        
+        @include breakpoint(small) { width: 50%; left: 46%; top: 46%; }
+        @include breakpoint(xsmall) { width: 45%; left: 48%; top: 50%; }
       }
     }
     &__hover {
@@ -169,12 +185,18 @@ export default {
         top: 41%;
         left: 44.5%;
         transform: translate(-50%, -50%);
+        @include breakpoint(large) { top: 42%; left: 44%; }
+        @include breakpoint(medium) { top: 43%; left: 44.5%; }
+        @include breakpoint(small) { top: 45%; left: 44.5%; }
+        @include breakpoint(xsmall) { width: 20%; top: 48%; left: 45%; }
       }
       &.love {
         width: 25%;
         top: 40%;
         left: 52%;
         transform: translate(-50%, -50%);
+        @include breakpoint(small) { top: 41%; left: 51%; }
+        @include breakpoint(xsmall) { top: 45%; left: 51%; }
       }
       &.work {
         bottom: 7%; 
@@ -182,6 +204,7 @@ export default {
         top: auto;
         left: 50%;
         transform: translate(-50%, -50%);
+        @include breakpoint(xsmall) { left: 48%; }
       }
       &.now {
         top: auto;
@@ -189,6 +212,8 @@ export default {
         width: 5%;
         right: 2%;
         left: auto;
+        @include breakpoint(small) { right: 6%; }
+        @include breakpoint(xsmall) { right: 10%; }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="sad-face" :style="faceStyles">
+  <div class="sad-face" :style="faceStyles" :class="{ fixed: this.$route.name !== 'home' }">
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
       <g>
         <g fill="inherit">
@@ -22,7 +22,7 @@ export default {
   computed: {
     ...mapState(['scrollPosition', 'bodyHeight', 'atPageBottom']),
     faceStyles() {
-      if (this.scrollPosition < THRESHHOLDS.landingThresh) {
+      if (this.scrollPosition < THRESHHOLDS.landingThresh && this.$route.name === 'home') {
         return {
          transform: `translate(-50%, -50%) rotate(${(this.scrollPosition / (this.bodyHeight / 10.2) * 360)}deg)`
         } 
@@ -55,6 +55,9 @@ export default {
   svg {
     fill: white;
     stroke: none;
+  }
+  &.fixed {
+    position: fixed;
   }
 }
 </style>

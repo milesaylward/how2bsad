@@ -51,7 +51,7 @@ export default {
     threshold: {
       type: Number,
       required: false,
-      default: 0.95 // percentage of thumbnail in viewport needed before its ready to animate in
+      default: 0.5 // percentage of thumbnail in viewport needed before its ready to animate in
     },
     thresholdMobile: {
       type: Number,
@@ -157,3 +157,36 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.appearable {
+  .ap-child {
+    opacity: 0;
+    transform: translate3d(0, $appearDistance, 0);
+    transition:
+      opacity $appearDuration $appearEase,
+      transform $appearDuration $appearEase;
+
+    $animStep: 85ms;
+    @for $i from 1 through 10 {
+      &.#{'ap-child--' + $i} {
+        transition-delay: #{$appearableAnimBaseDelay + ($i * $animStep)};
+      }
+    }
+  }
+}
+
+// Only animate in when the page has mounted
+.appearable {
+  &--can-appear {
+    .ap-child {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+
+      &.ap--ignore-transform {
+        transform: initial;
+      }
+    }
+  }
+}
+</style>

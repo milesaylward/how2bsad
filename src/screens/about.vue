@@ -7,8 +7,8 @@
     :style="sectionStyles"
     ref="aboutContainer"
   >
-  <div class="screen-about-container">
-    <div class="chapter-callout">
+  <div class="screen-about-container" :class="{animOut: animOut}">
+    <div class="chapter-callout" ref="callout">
       <div class="title-container">
         <div class="copy-bg">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 61.25" class="chapter-copy">
@@ -42,13 +42,11 @@
         </div>
         <NoiseCanvas />
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400.33 20.35">
-        <g id="Layer_1-2" data-name="Layer 1" class="underline">
-          <path ref="underline" class="cls-1" d="M0,15.71C106.31,23.46,174.53,19,218,13.07A1225,1225,0,0,1,385.8.52c6.15,0,11.21,0,14.53,0"/>
-        </g>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 787.63 14.51">
+        <path ref="underline" d="M3.5 3.5C252.12 16.61 523.65 6.84 784.13 11" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7" data-name="Layer 1"/>
       </svg>
     </div>
-    <div class="screen-about-container--left">
+    <div class="screen-about-container--left" ref="left">
       <div class="title" ref="title">
         <span class="header-svg" v-html="aboutHeader" />
         <NoiseCanvas />
@@ -61,7 +59,7 @@
         mental illness by talking about it publicly, openly, and honestly.
       </p>
     </div>
-    <div class="screen-about-container--right">
+    <div class="screen-about-container--right" ref="right">
      <div class="image-container" ref="image">
       <img src="./../assets/imgs/portrait.png" alt="Photo of Cindy" />
       <div v-html="HeadScribble" class="scribbles" ref="scribbles" />
@@ -88,6 +86,8 @@ export default {
     svgAnimated: false,
     HeadScribble,
     aboutHeader,
+    hasMinHeight: true,
+    minHeight: 850,
   }),
   watch: {
     scrollPosition() {
@@ -125,6 +125,9 @@ export default {
           this.animate();
         }
       }
+    },
+    animOut() {
+      TweenMax.to(this.$refs.callout, .3, { opacity: 0, ease: Power1.easeInOut });
     },
     checkArtAnim() {
       if (!this.svgAnimated) {
@@ -173,6 +176,7 @@ export default {
     z-index: 3;
     &-container {
       position: relative;
+      padding-top: 4rem;
       width: 80%;
       height: 100%;
       margin: 0 auto;
@@ -180,6 +184,10 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      @include breakpoint(small) {
+        width: 100%;
+        justify-content: flex-start;
+      }
       h1 {
         font-size: 42px;
         font-family: $fontBold;
@@ -247,6 +255,9 @@ export default {
         text-align: left;
         margin-left: 100px;
         min-width: 446px;
+        @include breakpoint(small) {
+          margin-left: 5%;
+        }
         .title {
           position: relative;
           z-index: 1;

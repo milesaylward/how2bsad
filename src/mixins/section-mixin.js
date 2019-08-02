@@ -7,7 +7,11 @@ export default {
     widthAdjustment: 1,
     heightAdjustment: 1,
     sectionName: null,
-    thresholds: THRESHHOLDS
+    thresholds: THRESHHOLDS,
+    hasMinWidth: false,
+    minWidth: 0,
+    hasMinHeight: false,
+    minHeight: 0,
   }),
   computed: {
     ...mapState([
@@ -45,9 +49,17 @@ export default {
       
     },
     baseStyles() {
+      let width = this.windowWidth * this.widthAdjustment;
+      let height = this.windowHeight * this.heightAdjustment;
+      if (this.hasMinWidth && width < this.minWidth) {
+        width = this.minWidth;
+      }
+      if (this.hasMinHeight && height < this.minHeight) {
+        height = this.minHeight
+      }
       return {
-        width: `${this.windowWidth * this.widthAdjustment}px`,
-        height: `${this.windowHeight * this.heightAdjustment}px`,
+        width: `${width}px`,
+        height: `${height}px`,
         left: `${this.defaultPosition.left}px`,
         top: `${this.defaultPosition.top}px`,
       }

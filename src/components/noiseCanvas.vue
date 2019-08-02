@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
   export default {
     name: 'noise-canvas',
     props: {
@@ -16,7 +17,8 @@
     computed: {
       rect() {
         return this.$refs.root.getBoundingClientRect();
-      }
+      },
+      ...mapState(['windowWidth']),
     },
     methods: {
       initCanvas() {
@@ -43,6 +45,15 @@
         this.noise();
         requestAnimationFrame(this.animateCanvas);
       },
+    },
+    watch: {
+      windowWidth() {
+        if (this.canvas) {
+          const rect = this.$refs.root.getBoundingClientRect();
+          this.canvas.width = Math.ceil(rect.width);
+          this.canvas.height = Math.ceil(rect.height);
+        }
+      }
     },
     mounted() {
       setTimeout(() => {
