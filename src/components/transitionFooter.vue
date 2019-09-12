@@ -49,7 +49,6 @@ export default {
   watch: {
     easedPosition(val) {
       if (!this.hidden && this.rect && !this.animating) {
-        console.log(val, this.bodyHeight, this.rect.height, window.innerHeight);
         if (val > (this.bodyHeight - this.rect.height) - window.innerHeight) {
           this.transformTop = val - ((this.bodyHeight - this.rect.height) - window.innerHeight)
         } else {
