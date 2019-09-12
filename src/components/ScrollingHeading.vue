@@ -6,6 +6,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { MathUtils } from '@/core/utils';
 
 export default {
   name: 'scrolling-heading',
@@ -32,9 +33,9 @@ export default {
     containerRect: null,
   }),
   watch: { 
-    scrollPosition: {
+    easedPosition: {
       handler(val) {
-        const value = (val || this.scrollPosition) + 40;
+        const value = val + 80;
         if (this.debug) console.log(value, this.topPosition, this.bottomPosition);
         if (value > this.topPosition && value < this.bottomPosition) {
           this.transform = value - this.topPosition;
@@ -47,12 +48,12 @@ export default {
     }
   },
   computed: { 
-    ...mapState(['scrollPosition', 'windowHeight']),
+    ...mapState(['scrollPosition', 'easedPosition', 'windowHeight']),
     transformStyles() {
       if (!this.transform) return;
       return {
         transition: 'none',
-        transform: `translateY(${this.transform}px)`
+        transform: `translate3d(0, ${this.transform}px, 0)`
       }
     }
   },
@@ -82,6 +83,7 @@ export default {
 <style lang="scss">
 .scrolling-heading {
   position: absolute;
+  transform: translateZ(0);
   top: 30%;
 }
 </style>

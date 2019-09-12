@@ -15,8 +15,8 @@ export default {
   }),
   computed: {
     hidden() {
-      return this.scrollPosition > this.thresholds.landingThresh;
-    }
+      return this.scrollPosition > this.thresholds.landingThresh || this.scrollToChapter;
+    },
   },
 }
 </script>

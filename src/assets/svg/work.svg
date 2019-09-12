@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325.82 122.4"><title>Asset 12</title><g data-name="Layer 2"><text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#000" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" font-weight="500" stroke-width='2' data-name="Layer 1"><tspan letter-spacing="-.03em">W</tspan><tspan x="104.5" y="0">ORK</tspan></text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145.43 33.75">
+  <defs>
+    <style>.work-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style>
+  </defs>
+  <title>work</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="work-1" d="M17.25,32.5H9L.65,1.25h8.5l4.2,22.1L19,1.25h9.1l5.7,22.1L38,1.25H46.1L37.75,32.5h-8.3L23.4,10.25Z"/>
+      <path class="work-1" d="M64.1,33.25c-9.25,0-16.3-5.75-16.3-16.3C47.8,7.05,54.9.5,64.2.5S80.55,6.2,80.55,16.75C80.55,26.65,73.4,33.25,64.1,33.25Zm0-26.35c-5.3,0-8.3,4-8.3,9.85s3.1,10.1,8.45,10.1,8.3-4.05,8.3-9.9S69.4,6.9,64.1,6.9Z"/>
+      <path class="work-1" d="M93.7,32.5h-8V1.25H98.3c8.3,0,12.65,3.85,12.65,9.9,0,4.2-2.2,7.4-6.4,9l8,12.35h-9L97.35,22l-3.65.3Zm3.85-16.2c3.4-.25,5.25-1.65,5.25-4.65,0-2.75-1.9-4.1-5.9-4.1H93.55V16.4Z"/>
+      <path class="work-1" d="M124.6,15.05,135,1.25h9.1L131.75,16.5l12.65,16h-9.5L124.6,18.75h0V32.5h-8V1.25h8v13.8Z"/>
+    </g>
+  </g>
+</svg>

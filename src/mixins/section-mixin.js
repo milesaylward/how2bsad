@@ -1,6 +1,6 @@
 import { mapState, mapGetters } from 'vuex';
 import { SECTIONS, THRESHHOLDS } from './../core/config';
-import { scrollHelper } from './../core/utils';
+import { scrollHelper, scrollToSection } from './../core/utils';
 
 export default {
   data: () => ({
@@ -17,7 +17,7 @@ export default {
     ...mapState([
       'windowWidth', 'windowHeight', 
       'isScrolling', 'scrollPosition',
-      'animateSection'
+      'animateSection', 'scrollToChapter'
     ]),
     ...mapGetters(['sectionActive']),
     shouldAnimate() {
@@ -67,7 +67,12 @@ export default {
     sectionStyles() {
       return scrollHelper({ section: this.sectionName, baseStyles: this.baseStyles });
     }
-  }, 
+  },
+  methods: {
+    scrollToSection(params) {
+      scrollToSection(params);
+    }
+  },
   mounted() {
     scrollHelper({ section: this.sectionName, baseStyles: this.baseStyles });
   }

@@ -1,6 +1,7 @@
 <template>
   <div 
     class="screen screen-chapters"
+    :data-subsection="sectionName"
     :class="{
       'screen--active': this.sectionActive(this.sectionName),
     }"
@@ -33,10 +34,10 @@
 import { TweenMax } from 'gsap';
 import sectionMixin from '@/mixins/section-mixin';
 import { SECTIONS, CHAPTER_CONFIG } from '@/core/config';
-import { SET_ACTIVE_CHAPTER } from '@/core/mutation-types';
+import { SET_ACTIVE_CHAPTER, SET_NEXT_ACTIVE_CHAPTER } from '@/core/mutation-types';
 import ChapterLink from '@/components/chapterLink';
 import NoiseCanvas from '@/components/noiseCanvas';
-import whatSVG from '@/assets/svg/what.svg'
+import whatSVG from '@/assets/svg/you.svg'
 import boxSVG from '@/assets/svg/box.svg'
 import { mapMutations } from 'vuex';
 
@@ -73,6 +74,8 @@ import { mapMutations } from 'vuex';
     methods: {
       handleChapterSelect(link) {
         this.selectedChapter = link.name;
+        const chapterIndex = CHAPTER_CONFIG.findIndex(chapter => chapter.name === link.name);
+        const nextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
         const rect = this.getRectAsObject(this.$refs[link.name][0].$el);
         this.setActiveChapter({ ...link, ...rect });
         this.$emit('changeChapter', link.name);

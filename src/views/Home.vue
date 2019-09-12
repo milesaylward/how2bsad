@@ -1,5 +1,5 @@
 <template>
-<div class="screen-container" ref="screenContainer" :style="containerStyle">
+<div class="screen-container" ref="screenContainer" :style="containerStyle" :class="visible">
   <Landing />
   <Title />
   <About ref="about" />
@@ -8,11 +8,15 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters, mapState, mapMutations } from 'vuex';
 import Landing from '@/screens/landing';
 import Title from '@/screens/title';
 import About from '@/screens/about';
 import Chapters from '@/screens/chapters';
+import { scrollToSection } from '../core/utils';
+import { SECTIONS } from '../core/config';
+import eventBus from '@/main';
+import { SCROLL_TO_CHAPTER } from '../core/mutation-types';
 
 export default {
   name: 'home',
@@ -24,6 +28,7 @@ export default {
   },
   data: () => ({
     animOut: false,
+    visible: false,
   }),
   computed: {
     mainContainerStyles() {
@@ -33,22 +38,38 @@ export default {
       });
     },
     ...mapGetters(['containerStyle']),
-    ...mapState(['scrollPosition', 'windowWidth', 'windowHeight'])
+    ...mapState(['scrollPosition', 'windowWidth', 'windowHeight', 'scrollToChapter'])
   },
   methods: {
-    handleChapterChange() {
+    handleChapterChange(linkName) {
+      const cb = () => {
+        this.$router.push(linkName);
+      };
       setTimeout(() => {
-        this.$refs.about.animOut();
-        this.$refs.chapter.animOut(this.routeChange);
+        this.$refs.chapter.animOut(cb);
       }, 300);
     },
-    routeChange() {
-      this.$router.push('/family');
-    },
-  }
+    ...mapMutations({
+      setScrollToChapter: SCROLL_TO_CHAPTER
+    })
+  },
+  mounted() {
+    if (this.scrollToChapter) {
+      setTimeout(() => {
+        const cb = () => {
+          setTimeout(() => {
+            this.setScrollToChapter(false);
+          }, 300);
+        };
+        scrollToSection({ subsection: SECTIONS.chapters, fast: true, cb });
+      }, 300);
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
+.screen-container {
+  // opacity: 0;
+}
 </style>

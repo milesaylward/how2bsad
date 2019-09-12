@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 271.99 122.4"><title>Asset 11</title><g data-name="Layer 2"><text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#fff" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" font-weight="500" stroke-width='2' data-name="Layer 1">N<tspan x="73.6" y="0" letter-spacing="-.03em">O</tspan><tspan x="151.8" y="0">W</tspan></text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.3 33.75">
+  <defs>
+    <style>.now-1{fill:none;stroke:#fff;stroke-miterlimit:10;}</style>
+  </defs>
+  <title>now</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="now-1" d="M22.1,1.25h7.45V32.8H21.1L8,12.25V32.5H.5V1.25H9.1l13,20.3Z"/>
+      <path class="now-1" d="M51.05,33.25c-9.25,0-16.3-5.75-16.3-16.3C34.75,7.05,41.85.5,51.15.5S67.5,6.2,67.5,16.75C67.5,26.65,60.35,33.25,51.05,33.25Zm0-26.35c-5.3,0-8.3,4-8.3,9.85s3.1,10.1,8.45,10.1,8.3-4.05,8.3-9.9S56.35,6.9,51.05,6.9Z"/>
+      <path class="now-1" d="M85.8,32.5H77.55L69.2,1.25h8.5l4.2,22.1,5.6-22.1h9.1l5.7,22.1,4.2-22.1h8.15L106.3,32.5H98L92,10.25Z"/>
+    </g>
+  </g>
+</svg>

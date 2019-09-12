@@ -19,8 +19,8 @@ import dat from 'dat-gui';
       params: {
 	      baseFrequencyX: 0.0,
         baseFrequencyY: 0.0,
-        maxFrequency: 0.06,
-        step: 0.0004,
+        maxFrequency: 0.045,
+        step: 0.0003,
       }
     }),
     computed: {
@@ -39,14 +39,11 @@ import dat from 'dat-gui';
       scrollPosition() {
         this.handleMouseMove();
       },
-      $route() {
-        this.stopAnimate();
-      },
       elementHovered(val) {
         if (val) {
-          this.animate();
-        } else {
           this.stopAnimate();
+          } else {
+          this.animate();
         }
       }
     },
@@ -57,7 +54,7 @@ import dat from 'dat-gui';
           this.clientY = e.clientY;
         }
         this.visible = true;
-        const offset = this.$route.name === 'home' ? 0 : this.scrollPosition;
+        const offset = 0;
         this.xPos = this.clientX;
         this.yPos = this.clientY + offset;
       },
@@ -81,7 +78,7 @@ import dat from 'dat-gui';
       },
       stopAnimate() {
         cancelAnimationFrame(this.animationFrame);
-        TweenMax.to(this.turbulence, 0.5, { attr:{"baseFrequency":"0,0"} });
+        TweenMax.to(this.turbulence, 0.5, { attr:{"baseFrequency":"0,0"}, ease: Power1.easeInOut });
         this.params.baseFrequencyX = 0;
         this.params.baseFrequencyY = 0;
       },
@@ -91,7 +88,7 @@ import dat from 'dat-gui';
           return;
         }
         if (this.checkDirection()) {
-          this.params.baseFrequencyX -= step; 
+          this.params.baseFrequencyX -= step;
           this.params.baseFrequencyY -= step;
         } else {
           this.params.baseFrequencyX += step;
@@ -110,6 +107,7 @@ import dat from 'dat-gui';
       },
     },
     mounted() {
+      this.animate();
       document.addEventListener('mousemove', this.handleMouseMove);
       document.addEventListener('mouseleave', this.handleMouseLeave);
       document.addEventListener("mouseenter", this.handleMouseLeave);

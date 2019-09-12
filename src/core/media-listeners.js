@@ -64,8 +64,6 @@ const mediaListeners = new Vue({
   },
   methods: {
     setMediaLarge({ matches }) {
-      console.log(matches);
-      
       store.commit(mutationTypes.MEDIA_SET_LARGE, { matches });
     },
     setMediaMed({ matches }) {

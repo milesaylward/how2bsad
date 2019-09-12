@@ -12,11 +12,15 @@ export default new Vuex.Store({
     windowWidth: null,
     bodyHeight: 0,
     scrollPosition: 0,
+    easedPosition: 0, 
     atPageBottom: false,
+    scrollToChapter: false,
     isScrolling: false,
     elementHovered: false,
     heroAnimated: false,
     activeChapter: null,
+    chapterContent: {},
+    nextChapter: null,
     breakpoints: {
       mediaLg: false,
       mediaMd: false,
@@ -39,6 +43,15 @@ export default new Vuex.Store({
       state.windowHeight = height;
       state.windowWidth = width;
     },
+    [types.SET_EASED_POSITION](state, value) {
+      state.easedPosition = value;
+    },
+    [types.SCROLL_TO_CHAPTER](state, bool) {
+      state.scrollToChapter = bool;
+    },
+    [types.SET_CHAPTER_CONTENT](state, { chapters }) {
+      state.chapterContent = chapters;
+    },
     [types.SET_SCROLL_POSITION](state, { position }) {
       state.scrollPosition = position;
     },
@@ -54,8 +67,11 @@ export default new Vuex.Store({
     [types.MEDIA_SET_XSMALL](state, { matches }) {
       state.breakpoints.mediaXs = matches;
     },
-    [types.SET_ACTIVE_CHAPTER](state, payload) {
-      state.activeChapter = payload;
+    [types.SET_ACTIVE_CHAPTER](state, chapter) {
+      state.activeChapter = chapter;
+    },
+    [types.SET_NEXT_ACTIVE_CHAPTER](state, nextChapter) {
+      state.nextChapter = nextChapter;
     },
     [types.SET_INACTIVE_SECTION](state, { section }) {
       state.activeSections[section] = false;
@@ -64,6 +80,8 @@ export default new Vuex.Store({
       state.activeSections[section] = true;
     },
     [types.SET_BODY_HEIGHT](state, { height }) {
+      console.log('setting body height', height);
+      
       state.bodyHeight = height;
     },
     [types.SET_AT_PAGE_BOTTOM](state, atBottom) {
@@ -90,6 +108,9 @@ export default new Vuex.Store({
   getters: {
     containerStyle(state) {
       return { width: `${state.windowWidth}px`, height: `${state.windowHeight}px` };
+    },
+    activeChapterContent: state => {
+      return state.chapterContent.filter(chapter => chapter.name === state.activeChapter.name)[0];
     },
     sectionActive: (state) => (section) => {
       return state.activeSections[section];

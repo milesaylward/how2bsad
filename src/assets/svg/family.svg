@@ -1,18 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 363.01 122.4">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.85 32.25">
   <defs>
-  <style>
-    text {
-      font-weight: bold
-      
-    }
-  </style>
+    <style>.family-1{fill:none;stroke:#fff;stroke-miterlimit:10;}</style>
   </defs>
-  <g data-name="Layer 2">
-    <text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#fff" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" data-name="Layer 1">
-      <tspan letter-spacing="-.07em" stroke-width='2'>F</tspan>
-      <tspan x="54.5" y="0" stroke-width='2'>AMI</tspan>
-      <tspan x="240.6" y="0" letter-spacing="-.09em" stroke-width='2'>L</tspan>
-      <tspan x="291.3" y="0" stroke-width='2'>Y</tspan>
-    </text>
+  <title>family</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="family-1" d="M.5.5H22.85V7.05H8.35V13.5H19.9V20H8.35V31.75H.5Z"/>
+      <path class="family-1" d="M54.4,31.75H46.5L44.2,25.1H32.6l-2.25,6.65h-7.9L33.55.5h10ZM38.45,6.65,34.3,18.9h8.15Z"/>
+      <path class="family-1" d="M86.8,7.65,80,31.25h-8.5L64.6,7.7l-.2,24.05H57L58.1.5H69.35L75.85,24,82.35.5h11.1l1,31.25H87Z"/>
+      <path class="family-1" d="M100.35,31.75V.5h8V31.75Z"/>
+      <path class="family-1" d="M114.9,31.75V.5h7.95V25.1H136v6.65Z"/>
+      <path class="family-1" d="M152.15,19.9V31.75h-7.8V19.85L133.45.5h8.45l6.45,12.35L154.6.5H163Z"/>
+    </g>
   </g>
 </svg>

@@ -176,7 +176,23 @@ export default {
   }
 }
 
-// Only animate in when the page has mounted
+.appearable {
+  .ap-child {
+    opacity: 0;
+    transform: translate3d(0, $appearDistance, 0);
+    transition:
+      opacity $appearDuration $appearEase,
+      transform $appearDuration $appearEase;
+
+    $animStep: 85ms;
+    @for $i from 1 through 10 {
+      &.#{'ap-child--' + $i} {
+        transition-delay: #{$appearableAnimBaseDelay + ($i * $animStep)};
+      }
+    }
+  }
+}
+
 .appearable {
   &--can-appear {
     .ap-child {

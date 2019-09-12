@@ -1,17 +1,11 @@
 <template>
   <div class="transition-hero" :class="[chapterName, { visible }]" ref="root">
-    <div class="chapter-name">
-      <p>
-        Chapter <span v-html="chapterMap[chapterName]" />:
-        <span class="name">{{chapterName}}</span>
-      </p>
-    </div>
     <div class="photo-container" v-if="activeChapter && activeChapter.photo" :class="chapterName" :style="{maxWidth: `${this.rect.width - 100}px`}">
       <img :src="activeChapter.photo" alt="">
       <HandDrawn :svg="activeChapter.svg" :canDraw="true" :chapterName="activeChapter.name" noOffset />
       <div v-html="activeChapter.svg.title" class="title" />
     </div>
-    <div class="scroll-cta">
+    <div class="scroll-cta" :class="{ visible: ctaVisible }" @click="handleScrollClick">
       <p>Scroll</p>
       <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 1.40622L6.00014 7.40608L0.000272689 1.40622L1.40649 -4.63057e-07L6.00014 4.59364L10.5938 -6.14677e-08L12 1.40622Z" fill="white"/>
@@ -21,10 +15,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import HandDrawn from '@/components/handDrawn';
 import { TweenMax } from 'gsap';
+import eventBus from '@/main';
 import { SET_HERO_ANIMATED } from '../core/mutation-types';
+import { scrollToSection } from '@/core/utils';
 
 export default {
   name: 'transition-hero',
@@ -35,13 +31,8 @@ export default {
     chapterName: null,
     visible: false,
     mounted: false,
+    ctaVisible: false,
     rect: {},
-    chapterMap: {
-      family: '&#8544;',
-      love: '&#8545;',
-      work: '&#8546;',
-      now: '&#8547;',
-    }
   }),
   computed: {
     baseRect() {
@@ -72,17 +63,25 @@ export default {
         this.animateIn();
       }, 300);
     },
+    handleScrollClick() {
+      scrollToSection({ subsection: 'chapterContent' });
+    },
     animateIn() {
+      eventBus.$emit('stopAnimation');
       TweenMax.to(this.$refs.root, .5, {
         left: 0, top: 0,
         width: '100%', height: '100vh',
-        ease: Power1.easeOut, onComplete: () => {
+        ease: Power1.easeInOut,
+        onComplete: () => {
           this.visible = true;
           TweenMax.set(this.$refs.root, { position: 'relative' });
+          this.ctaVisible = true;
           this.setHeroAnimated(true);
+          this.setElementHovered(false);
         }
       });
     },
+    ...mapActions(['setElementHovered']),
     ...mapMutations({
       setHeroAnimated: SET_HERO_ANIMATED
     }),
@@ -132,6 +131,7 @@ export default {
   z-index: 5;
   display: flex;
   justify-content: center;
+  align-items: center;
   transition: opacity 500ms $easeOutQuad;
   pointer-events: none;
   &.love { background: white; }
@@ -139,6 +139,7 @@ export default {
   &.now { background: #292929; }
   &.visible {
     opacity: 1;
+    pointer-events: all;
   }
   .scroll-cta {
     position: absolute;
@@ -150,6 +151,11 @@ export default {
     text-align: center;
     color: white;
     font-family: $font;
+    opacity: 0;
+    transition: opacity 400ms $easeOutQuad;
+    &.visible {
+      opacity: 1;
+    }
     svg {
       margin: 0 auto;
       animation: arrowBounce 3s ease infinite;
@@ -193,6 +199,7 @@ export default {
       max-height: 134px;
       margin-left: auto;
       margin-right: 0;
+      padding: 10px 0;
       @include breakpoint(large) {
         max-width: 308px;
       }

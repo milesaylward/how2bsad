@@ -3,6 +3,7 @@
     <div class="chapter-link" :class="{[chapter.name] : true}" @mouseenter="handleHover('enter')" @mouseleave="handleHover('leave')" ref="root">
       <img class="number" :src="chapter.number" alt="">
       <img class="photo" :src="chapter.photo" alt="" v-if="chapter.photo">
+      <div class="noise-bg" />
       <HandDrawn :svg="chapter.svg" :canDraw="canDraw" :chapterName="chapter.name" :drawHover="hoverAnimate || activeChapter" />
       <div v-html="chapter.svg.title" class="title" />
     </div>
@@ -12,7 +13,6 @@
 <script>
 import HandDrawn from './handDrawn';
 import { mapActions } from 'vuex';
-
 export default {
   name: 'chapterLink',
   components: {
@@ -66,11 +66,32 @@ export default {
 .chapter-link {
   position: relative;
   width: 620px;
+  height: 100%;
+  max-height: 650px;
   background-color: #555;
+  overflow: hidden;
   padding: {
     top: 50px;
     left: 50px; 
     right: 50px;
+  }
+  .noise-bg {
+    position: absolute;
+    left: -20%;
+    top: -20%;
+    display: block;
+    width: 150%;
+    height: 150%;
+    z-index: -1;
+    opacity: 0;
+    will-change: transform;
+    transition: opacity 300ms $easeOutQuad;
+  }
+  &:hover {
+    .noise-bg {
+      opacity: 1;
+      animation: noiseAnimation 500ms steps(20) infinite;
+    }
   }
   @include breakpoint(large) {
     width: 520px;
@@ -126,6 +147,7 @@ export default {
     max-height: 134px;
     margin-left: auto;
     margin-right: 0;
+    padding: 10px 0;
     @include breakpoint(large) {
       max-width: 308px;
     }
@@ -137,6 +159,16 @@ export default {
     }
     @include breakpoint(xsmall) {
       max-width: 120px;
+    }
+  }
+  &.family, &.now {
+    .noise-bg {
+      background: url('./../assets/imgs/grey-noise.png')
+    }
+  }
+  &.work, &.love {
+    .noise-bg {
+      background: url('./../assets/imgs/white-noise.png')
     }
   }
   &.family {

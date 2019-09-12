@@ -40,11 +40,26 @@ export const SECTIONS = {
   chapters: 'chapters'
 };
 
+export const SUB_PAGES = {
+  FAMILY: 'family',
+  WORK: 'work',
+  LOVE: 'love',
+  NOW: 'now',
+};
+
+export const SUB_PAGE_ARRAY = [
+  SUB_PAGES.FAMILY,
+  SUB_PAGES.LOVE,
+  SUB_PAGES.WORK,
+  SUB_PAGES.NOW,
+];
+
 export const CHAPTER_CONFIG = [
   {
     photo: familyPhoto,
     name: 'family',
     number: one,
+    chapterNumber: 1,
     svg: {
       drawn: familyArrow,
       hover: faceHover,
@@ -55,6 +70,7 @@ export const CHAPTER_CONFIG = [
     photo: lovePhoto,
     name: 'love',
     number: two,
+    chapterNumber: 2,
     svg: {
       drawn: null,
       hover: loveX,
@@ -65,6 +81,7 @@ export const CHAPTER_CONFIG = [
     photo: cannes,
     name: 'work',
     number: three,
+    chapterNumber: 3,
     svg: {
       drawn: workArrow,
       hover: exclaim,
@@ -75,6 +92,7 @@ export const CHAPTER_CONFIG = [
     photo: question,
     name: 'now',
     number: four,
+    chapterNumber: 4,
     svg: {
       drawn: circle,
       hover: questionSvg,

@@ -1,10 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 271.99 122.4">
-  <title>Asset 13</title>
-  <g data-name="Layer 2">
-    <text transform="translate(.5 85.5)" font-size="100" fill="none" stroke="#000" stroke-miterlimit="10" font-family="AlrightSans-Bold,Alright Sans" font-weight="700" data-name="Layer 1" stroke-width='2'>
-      <tspan letter-spacing="-.02em">L</tspan>
-      <tspan x="57.7" y="0" letter-spacing="-.02em">O</tspan>
-      <tspan x="136.3" y="0">VE</tspan>
-    </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.25 33.75">
+  <defs>
+    <style>.love-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style>
+  </defs>
+  <title>love</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="love-1" d="M.5,32.5V1.25h8v24.6h13.1V32.5Z"/>
+      <path class="love-1" d="M39.45,33.25c-9.25,0-16.3-5.75-16.3-16.3C23.15,7.05,30.25.5,39.55.5S55.9,6.2,55.9,16.75C55.9,26.65,48.75,33.25,39.45,33.25Zm0-26.35c-5.3,0-8.3,4-8.3,9.85s3.1,10.1,8.45,10.1,8.3-4.05,8.3-9.9S44.75,6.9,39.45,6.9Z"/>
+      <path class="love-1" d="M77.7,32.5h-10L57.2,1.25h8.2L72.8,24.8,80.15,1.25h8.3Z"/>
+      <path class="love-1" d="M91.9,32.5V1.25h22.85v6.4h-15v6h12.1V20H99.7v6.1h15v6.4Z"/>
+    </g>
   </g>
 </svg>

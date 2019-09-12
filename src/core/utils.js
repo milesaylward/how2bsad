@@ -1,3 +1,4 @@
+import { TweenMax, Power4 } from 'gsap/all';
 import store from './store';
 import * as types from './mutation-types';
 import { 
@@ -18,22 +19,17 @@ function setAnimateSection(section) {
 }
 
 export function scrollHelper({ baseStyles, section }) {
-  const titleSize = store.state.windowWidth * 1.6 > 900 ? store.state.windowWidth * 1.6 : 900;
-  const aboutSize = store.state.windowHeight > 850 ? store.state.windowHeight : 850;
-  const chapterSize = store.state.windowHeight * 2 > 1750 ? (store.state.windowHeight * 2) : 1750;
-  // let offset = 200;
-  if(store.state.windowWidth < 1440) {
-    // offset = 400;
-  }
-  const scrollPos = store.state.scrollPosition,
-        windowWidth = store.state.windowWidth,
-        windowHeight = store.state.windowHeight,
-        activeSections = store.state.activeSections,
-        titleFinalX = THRESHHOLDS.landingThresh + (titleSize),
-        titleFinalY = titleFinalX + windowHeight + THRESHHOLDS.default,
-        aboutFinalY = titleFinalY + aboutSize + THRESHHOLDS.default,
-        chapterFinalY = titleFinalY + aboutSize + chapterSize;
-
+const titleSize = store.state.windowWidth * 1.6 > 900 ? store.state.windowWidth * 1.6 : 900;
+const aboutSize = store.state.windowHeight > 850 ? store.state.windowHeight : 850;
+const chapterSize = store.state.windowHeight * 2 > 1750 ? (store.state.windowHeight * 2) : 1750;
+const scrollPos = store.state.easedPosition,
+      windowWidth = store.state.windowWidth,
+      windowHeight = store.state.windowHeight,
+      activeSections = store.state.activeSections,
+      titleFinalX = THRESHHOLDS.landingThresh + (titleSize),
+      titleFinalY = titleFinalX + windowHeight + THRESHHOLDS.default,
+      aboutFinalY = titleFinalY + aboutSize + THRESHHOLDS.default,
+      chapterFinalY = titleFinalY + aboutSize + chapterSize;
 
   if (scrollPos < 1) {
     return {
@@ -55,7 +51,9 @@ export function scrollHelper({ baseStyles, section }) {
   
   if (SECTIONS[section] === SECTIONS.title && activeSections.title) {
     if (scrollPos < titleFinalX) {
-      scrollStyles.transform = `translate3d(-${scrollPos - THRESHHOLDS.landingThresh}px, 0, 0) `;
+      if (scrollPos > THRESHHOLDS.landingThresh) {
+        scrollStyles.transform = `translate3d(-${scrollPos - THRESHHOLDS.landingThresh}px, 0, 0) `;
+      }
     } else if (scrollPos < titleFinalY || scrollPos > titleFinalX + THRESHHOLDS.default && !activeSections.about) {
       if (scrollPos < titleFinalX + THRESHHOLDS.default) {
         scrollStyles.transform = `translate3d(-${titleFinalX - THRESHHOLDS.landingThresh}px, 0, 0) `;
@@ -95,4 +93,27 @@ export function scrollHelper({ baseStyles, section }) {
     ...scrollStyles,
     ...baseStyles,
   };
-}
+};
+
+export function scrollToSection({ subsection, fast = false, cb, offset = 0 }) {
+  const element = document.querySelector(`[data-subsection=${subsection}]`);
+  const titleSize = store.state.windowWidth * 1.6 > 900 ? store.state.windowWidth * 1.6 : 900;
+  const scrollPos = store.state.scrollPosition,
+        windowHeight = store.state.windowHeight,
+        titleFinalX = THRESHHOLDS.landingThresh + (titleSize),
+        titleFinalY = titleFinalX + windowHeight + THRESHHOLDS.default;
+  if (!element) return;
+  let innerOffset = offset;
+  if (subsection === 'chapters' && !(scrollPos >  titleFinalY + THRESHHOLDS.default)) {
+    innerOffset = (titleFinalY + THRESHHOLDS.default) - scrollPos;
+  }
+  const finalY = (element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset));
+  TweenMax.killTweensOf(window);
+  TweenMax.to(window, fast ? 0 : 1, {
+    scrollTo: { x: 0, y: finalY + innerOffset, autoKill: false },
+    ease: Power4.easeOut,
+    onComplete: () => {
+      if (cb) cb(finalY + innerOffset);
+    },
+  });
+};
