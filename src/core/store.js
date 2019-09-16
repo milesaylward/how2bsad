@@ -80,8 +80,6 @@ export default new Vuex.Store({
       state.activeSections[section] = true;
     },
     [types.SET_BODY_HEIGHT](state, { height }) {
-      console.log('setting body height', height);
-      
       state.bodyHeight = height;
     },
     [types.SET_AT_PAGE_BOTTOM](state, atBottom) {

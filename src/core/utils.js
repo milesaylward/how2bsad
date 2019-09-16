@@ -1,4 +1,5 @@
-import { TweenMax, Power4 } from 'gsap/all';
+import { TweenMax, Power4, ScrollToPlugin } from 'gsap/all';
+const scrollTo = ScrollToPlugin
 import store from './store';
 import * as types from './mutation-types';
 import { 

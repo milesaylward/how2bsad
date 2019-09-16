@@ -1,5 +1,5 @@
 <template>
-  <div class="sad-face" :style="containerStyle" :class="{ fixed: isFixed, hidden: scrollToChapter }">
+  <div class="sad-face" :style="containerStyle" :class="{ fixed: isFixed, hidden: scrollToChapter, isBlack: isBlack  }">
     <div class="sad-face__container" :style="faceStyles" @click="handleFaceClick">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
         <g>
@@ -35,10 +35,14 @@ export default {
       now: '&#8547;',
     },
     nameVisible: false,
+    showBlack: false,
   }),
   computed: {
     isFixed() {
       return this.$route.name !== 'home'
+    },
+    isBlack() {
+      return this.$route.name === 'love' && this.showBlack;
     },
     chapterName() {
       if (!this.activeChapter) return '';
@@ -79,10 +83,32 @@ export default {
       },
       immediate: true,
     },
+    easedPosition(val) {
+      if (this.showBlack && val + 64 > window.innerHeight) {
+        this.showBlack = false;
+      } else if (!this.showBlack && val + 64 < window.innerHeight) {
+        this.showBlack = true;
+      }
+    },
+    '$route': {
+      handler(val) {
+        if (val === 'love') {
+          this.setShowBlack();
+        }
+      }
+    }
   },
   methods: {
     handleFaceClick() {
       this.$router.push('/');
+    },
+    setShowBlack() {
+      this.showBlack = !this.showBlack;
+    }
+  },
+  mounted() {
+    if (this.$route.name === 'love') {
+      this.setShowBlack();
     }
   }
 }
@@ -116,6 +142,7 @@ export default {
       svg {
         fill: white;
         stroke: none;
+        transition: color 300ms $easeOutQuad;
       }
     }
   
@@ -140,9 +167,24 @@ export default {
       position: absolute;
       right: 64px;
       opacity: 0;
-      transition: opacity 300ms $easeOutQuad 200ms;
+      transition: opacity 300ms $easeOutQuad 200ms, color 300ms $easeOutQuad;
       &.visible {
         opacity: 1;
+      }
+    }
+  }
+  &.isBlack {
+    .sad-face {
+      &__container {
+        svg {
+          fill: black;
+        }
+      }
+      
+    }
+    .chapter-name {
+      p {
+        color: black;
       }
     }
   }

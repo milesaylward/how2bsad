@@ -45,17 +45,16 @@ router.beforeEach((to, from, next) => {
   if (to.name !== 'home' && ((store.state.activeChapter && store.state.activeChapter.name !== to.name) || !store.state.activeChapter)) {
     const chapter = CHAPTER_CONFIG.filter(chapter => chapter.name === to.name)[0];
     const chapterIndex = CHAPTER_CONFIG.findIndex(chapter => chapter.name == to.name);
-    const nextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
     store.commit(SET_ACTIVE_CHAPTER, chapter);
-    setTimeout(() => {
-      store.commit(SET_NEXT_ACTIVE_CHAPTER, nextChapter);
-    }, 1000);
+    if (!store.state.nextChapter) {
+      const nextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
+      setTimeout(() => {
+        store.commit(SET_NEXT_ACTIVE_CHAPTER, nextChapter);
+      }, 1000);
+    }
   } else if (to.name !== 'home' && !store.state.nextChapter) {
     const chapterIndex = CHAPTER_CONFIG.findIndex(chapter => chapter.name == to.name);
     const nextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
-    setTimeout(() => {
-      store.commit(SET_NEXT_ACTIVE_CHAPTER, nextChapter);
-    }, 1000);
   }
   if (to.name === 'home') {
     store.commit(SET_ACTIVE_CHAPTER, null);

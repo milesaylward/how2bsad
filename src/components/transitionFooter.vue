@@ -18,9 +18,11 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import { TweenMax } from 'gsap';
+import { TweenMax, Power4 } from 'gsap';
+import { ScrollToPlugin } from 'gsap/all';
 import { CHAPTER_CONFIG } from '@/core/config';
 import { SET_ACTIVE_CHAPTER, SET_NEXT_ACTIVE_CHAPTER } from '@/core/mutation-types';
+const scrollTo = ScrollToPlugin
 export default {
   name: 'transition-footer',
   data: () => ({
@@ -71,25 +73,28 @@ export default {
       this.animating = true;
       const topDiff = this.$refs.container.getBoundingClientRect().top;
       TweenMax.set(this.$refs, { position: 'fixed' });
-      TweenMax.to(this.$refs.image, 0.4, { y: -42 });
-      TweenMax.to(this.$refs.copy, 0.3, { opacity: 0 });
-      TweenMax.to(this.$refs.container, 0.5,{ 
+      TweenMax.to(this.$refs.image, 0.6, { y: -42, ease: Power4.easeOut });
+      TweenMax.to(this.$refs.copy, 0.6, { opacity: 0, ease: Power4.easeOut });
+      TweenMax.to(this.$refs.container, 1,{ 
         top: 0, 
         bottom: 'auto',
         height: '100vh', 
         padding: 0,
         y: 0,
+        ease:Power4.easeOut,
         onComplete: () => {
           this.animating = false;
           const chapterIndex = CHAPTER_CONFIG.findIndex(chapter => chapter.name === this.nextChapter.name);
-          const newNextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
+          const newChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
           TweenLite.to(window, 0, { scrollTo:0 });
           this.$router.push(this.nextChapter.name);
           this.setActiveChapter(this.nextChapter);
-          TweenMax.to(this.$refs.container, 0.3, { opacity: 0, zIndex: -1, delay: 0.8, onComplete: () => {
+          TweenMax.to(this.$refs.container, 0.6, { opacity: 0, zIndex: -1, delay: 0.8, ease: Power4.easeOut, onComplete: () => {
             TweenMax.set(this.$refs.image, { display: 'none' });
             TweenMax.set(this.$refs.container, { clearProps: 'all' });
             setTimeout(() => {
+              const newNextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
+              this.setNextChapter(newNextChapter);
               TweenMax.set(this.$refs.copy, { clearProps: 'all' });
               TweenMax.set(this.$refs.image, { clearProps: 'all' });
             }, 1000);

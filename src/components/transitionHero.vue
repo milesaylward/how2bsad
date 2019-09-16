@@ -19,8 +19,9 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 import HandDrawn from '@/components/handDrawn';
 import { TweenMax } from 'gsap';
 import eventBus from '@/main';
-import { SET_HERO_ANIMATED } from '../core/mutation-types';
+import { SET_HERO_ANIMATED, SET_NEXT_ACTIVE_CHAPTER } from '../core/mutation-types';
 import { scrollToSection } from '@/core/utils';
+import { CHAPTER_CONFIG } from '../core/config';
 
 export default {
   name: 'transition-hero',
@@ -71,19 +72,23 @@ export default {
       TweenMax.to(this.$refs.root, .5, {
         left: 0, top: 0,
         width: '100%', height: '100vh',
-        ease: Power1.easeInOut,
+        ease: Power1.easeOut,
         onComplete: () => {
           this.visible = true;
           TweenMax.set(this.$refs.root, { position: 'relative' });
           this.ctaVisible = true;
           this.setHeroAnimated(true);
           this.setElementHovered(false);
+          const chapterIndex = CHAPTER_CONFIG.findIndex(chapter => chapter.name === this.activeChapter.name);
+          const newNextChapter = CHAPTER_CONFIG[(chapterIndex + 1) % CHAPTER_CONFIG.length];
+          this.setNextChapter(newNextChapter);
         }
       });
     },
     ...mapActions(['setElementHovered']),
     ...mapMutations({
-      setHeroAnimated: SET_HERO_ANIMATED
+      setHeroAnimated: SET_HERO_ANIMATED,
+      setNextChapter: SET_NEXT_ACTIVE_CHAPTER,
     }),
   },
   watch: {

@@ -74,12 +74,12 @@ export default {
           floatingCopy: 'In the fictional world, obstacles are only there to thicken the plot.',
           copy: [
             'I grew up watching anime and exclusively consumed shoujo manga: stories aimed at the female target-demographic readership, often with a focus on romantic relationships and emotions. They starred wide-eyed girls who fell in love with the handsome, young men that rescued them (or vice versa, if the stories were more progressive). It didn’t matter if they were a modern-day student in high school or a heroine of an epic fantasy; no matter what, they always found a boy who loved them so much that my 12-year-old self’s heart would flutter just at the thought if it. How wonderful it was, this phenomenon that someone in the world could care so purely and deeply for you.',
-            'I spent years devouring media that taught little girls everywhere that receiving a boy’s care and affection was the ultimate happy ending. Maybe my affinity for these narratives was what made me so naive. It’s easy to ignore red flags for the sake of fulfilling the romanticized stories you grew up with. Rom-coms push out grand gestures as unequivocal signs of true love, subconsciously training us to accept problematic behavior like stalking and possessiveness as noble pursuits for romance. In the fictional world, obstacles are only there to thicken the plot. In the end, love conquers all.',
+            'I spent years devouring media that taught little girls everywhere that receiving a boy’s care and affection was the ultimate happy ending. Maybe my affinity for these narratives was what made me so naive. It’s easy to ignore red flags for the sake of fulfilling the romanticized stories you grew up with. Rom-coms push out grand gestures as unequivocal signs of true love, <a href="https://www.theatlantic.com/health/archive/2016/02/romantic-comedies-where-stalking-meets-love/460179/" target="_blank">subconsciously training us to accept problematic behavior</a> like stalking and possessiveness as noble pursuits for romance. In the fictional world, obstacles are only there to thicken the plot. In the end, love conquers all.',
             'When I dated my first boyfriend in freshman year of college, I fell for him fast and hard. We met during the first week of freshman year when I visited a dorm lounge. The university didn’t have enough space to accommodate all incoming freshmen, so I had been moved into a lonely studio apartment and longed for the communal dorm experience. He invited me to all of their socials, and I was happy whenever his dorm friends claimed that they had “adopted” me. For the first time, I felt included.',
             'It was easy for me to become attracted to him because of the special attention that he paid to me. Growing up, hardly any boy talked or treated me differently than a piece of wallpaper. But this one would hold my hand when we ice-skated, walk me home to my apartment every night, and compliment how beautiful I looked. One night before an 8 AM class, we stayed up until 5 AM just talking and holding hands. For our first date, he visited my apartment with a bouquet of roses and cooked beef stroganoff for just the two of us.',
-            ' was completely swept off my feet. This was all that I had wanted: grand, romantic gestures from someone who could make me feel special. This was my shoujo story. It had everything: the meet-cute, the big moments, the shyness and awkward fumbles of first love. And he was so romantic and chivalrous—how could dating a guy as nice as him go wrong?'
+            'I was completely swept off my feet. This was all that I had wanted: grand, romantic gestures from someone who could make me feel special. This was my shoujo story. It had everything: the meet-cute, the big moments, the shyness and awkward fumbles of first love. And he was so romantic and chivalrous—how could dating a guy as nice as him go wrong?'
           ],
-          image: '/static/img/default.png'
+          image: '/static/img/chapterTwo/one.png',
         },
         {
           title: '',
@@ -90,7 +90,7 @@ export default {
             'But there were other issues, too. When he visited my apartment and saw a pair of contact lenses on the sink, he interrogated me on whether another guy slept here or not. When he saw photos of me smiling next to a male colleague named Jackson, he drew a crying face on a wall at his construction job, wrote “ASSHOLE JACK” underneath it, and smashed the wall with his sledgehammer. His jealousy extended beyond me being around other men, as he would also become resentful if I had any form of success. When I excitedly told him about landing my first internship, he questioned if I really knew what I was doing and said I was too much of a “clueless little girl”.',
             'He was so insecure with himself that he couldn’t stand seeing me doing any better than him, and as a result, would often talk me down and make me feel worthless and stupid. He also hated feeling like the bad guy, so every time I expressed sadness or hurt, he would blow up and get angry that I was putting him at fault. He blamed my negativity for ruining our relationship.'
           ],
-          image: '/static/img/default.png'
+          image: '/static/img/chapterTwo/two.png',
         },
         {
           title: '',
@@ -101,7 +101,7 @@ export default {
             'I learned to contain my sadness in order to prevent our fights from escalating. Somehow, though, it always would. Sadness was too difficult to hide when it seemed to embody me completely. He made me cry so much that I would wander around campus like a ghost afterward, devoid of joy or personality or humor. I felt like I was an empty shell of who I used to be, swollen eyes and broken parts and all. I was no longer the funny girl who loved reading shoujo manga and writing fantasy novels—I was just somebody who was sad all the time.',
             'When we broke up, it was the hardest thing ever. Which I know sounds stupid, because it had been such a terrible relationship in the first place. But it had been a devastating blow to me just because the aftermath demonstrated how lonely I was. I didn’t have anything else. All of my friends had come from his social circle, so I lost all of them with him. I had no close friends or family to give perspective or advice. I realized that my estranged relationship with my family left me longing for emotional care that hadn’t been provided until I met him. Even though he was wrong and twisted, he had been the only one there for me. Now he was gone, and all I could think was: Nobody else will care for you the way that he did.'
           ],
-          image: '/static/img/default.png'
+          image: '/static/img/chapterTwo/three.png',
         },
         {
           title: '',
@@ -123,7 +123,7 @@ export default {
             'He got back together with his ex.',
             'I missed the red flags again.'
           ],
-          image: '/static/img/default.png'
+          image: '/static/img/chapterTwo/four.png',
         },
         {
           title: '',
@@ -135,11 +135,11 @@ export default {
             'After distancing myself from the tumultuous world of dating and relationships, I feel silly for relying so much of my happiness and self-worth on other people. Everybody goes through terrible relationships, and emotionally abusive relationships are unfortunately more common than you think. I realize the real reason why these fallouts had affected me so much: I had been searching for the emotional connections and support that had been absent from my family and lack of friendships.',
             'By default, a family is the first source of safety, warmth, and happiness. Friendship becomes the second source as people traverse through life, forging strong bonds with other people that border on familial. I didn’t have either of those relationships in my life. As a result, I ended up funneling all those desires for emotional connections into men who were too selfish and too young to grasp something so delicate.',
             'I misplaced love onto irresponsible people. I realize now that I should have placed it in myself first. People will come and go in life. Their feelings will change, and there is always a chance they will leave. The only person that you’re stuck with for the rest of your life is yourself. So take ownership for yourself.',
-            'I’ve learned that being alone is better than being with someone who isn’t right for me. Toxic relationships take a toll on both your mind and body—so while it may fulfill that hole of loneliness and self-loathing for now, the depression will become exacerbated in the long run when you depend your happiness on another person.',
+            'I’ve learned that being alone is better than being with someone who isn’t right for me. <a target="_blank" href="https://www.forbes.com/sites/quora/2018/05/03/research-shows-bad-relationships-can-also-mean-bad-health/">Toxic relationships take a toll on both your mind and body</a>—so while it may fulfill that hole of loneliness and self-loathing for now, the depression will become exacerbated in the long run when you depend your happiness on another person.',
             'I’ve owned up to my independence so extremely that I haven’t been in a relationship since then. Even as I continue to be single for years, I don’t feel any pressure to find a partner or go on dates. It’s not that I’ve closed myself off from relationships. It’s just that my priorities in life have changed.',
             'I still love reading shoujo—those stories remain as a guilty pleasure, especially as a break from the weight of reality and adulthood. But that’s all these stories are: escapism. A fantasy that has been coveted from childhood nostalgia. It’s an indulgent hobby that stems from a time in my life when I didn’t know there were so many other things in the world to be excited about—that love can take on different forms besides romance, like love for work, for platonic relationships, and for oneself.',
           ],
-          image: '/static/img/default.png'
+          image: '/static/img/chapterTwo/five.png',
         },
         {
           title: '',
@@ -148,7 +148,6 @@ export default {
             'The last story that I want to share comes from when a girl I’d never met messaged me. She explained that she had dated my ex and was now struggling with the subsequent depression, insecurity, and extinguished sense of self-worth. She was reaching out to me for help. I stayed up talking to her all night until 2 AM, trying to support her as best as I could with my own perspective. We’ve become friends since then, and although it angers me that he continued to hurt other people after our relationship, I’m glad that I can use this experience to help others who also struggle with toxic relationships and lack of self-worth. My pain did not lead me to any greater, truer love with another partner, but it has taught me to be more empathetic to others and compassionate to myself.',
             'Love can be defined in other ways. I’m still expanding my definition of it.'
           ],
-          image: '/static/img/default.png'
         }
       ]
     }

@@ -109,6 +109,7 @@ import { mapMutations } from 'vuex';
       flex-wrap: wrap;
       width: 100%;
       justify-content: center;
+      max-width: 1450px;
       // height: 100%;
     }
   }
