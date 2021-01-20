@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "fastdom": "^1.0.9",
-    "gsap": "^2.1.2",
+    "gsap": "^3.6.0",
     "paper": "^0.12.3",
     "raw-loader": "^3.0.0",
     "simplex-noise": "^2.4.0",
